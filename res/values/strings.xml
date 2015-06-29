@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Servey</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+ <string name="uname">User Name</string>
+ <string name="pwd">Password</string>
+ <string name="cannot">Cannot</string>
+ 
+
+   <string-array name="tripFreq">
+       
+        <item >Daily</item>
+        <item >Weekly</item>
+        <item >Montly</item>
+        <item >6 month</item>
+        <item >1 Year</item>
+         <item >Occasionally</item>
+    </string-array>
+ 
+
+ <string-array name="commodity">
+       
+        <item >Food Grains</item>
+        <item >Fruits &amp; Vegetables</item>
+        <item >Textiles &amp; Clothing</item>
+        <item >Petrolium Products</item>
+        <item >Minerals &amp; Ores</item>
+         <item >Iron &amp; Steel</item>
+         
+          <item >Wood and Prod</item>
+           <item >Coal/Coak</item>
+            <item >Machines/Parts</item>
+             <item >Fertilizer/Chemicals</item>
+              <item >Building Materials</item>
+               <item >Empty</item>
+                <item >Others (Pl specify)</item>
+    </string-array>
+ 
+    <string-array name="gooodstype">
+        <item > </item>
+       
+        <item >LCV 4 Tyre Truck</item>
+        <item >LCV 6 Tyre Truck</item>
+        <item >2-Axle Truck</item>
+        <item >3-Axle Truck</item>
+        <item >Multi Axle More than 3-Axle</item>
+         <item >Mini Lcv Truck</item>
+    </string-array>
+
+
+
+ <string-array name="passengertype">
+      <item >Car</item>
+        <item >Car</item>
+        <item >Taxi Yellow plate</item>
+        <item >Jeep/Tata Ace</item>
+        <item >Van / Tempo</item>
+        <item >School Bus</item>
+        <item >Pvt Bus</item>
+        <item >Govt Bus</item>
+    </string-array>
+    
+ 
+ <string-array name="passengerVehArr">
+      <item >image7</item>
+        <item >image7</item>
+        <item >image8</item>
+        <item >image9</item>
+        <item >image10</item>
+        <item >image11</item>
+        <item >image12</item>
+          <item >image13</item>
+       
+    </string-array>
+    
+  <string-array name="goodsvehArr">
+      <item >image0</item>
+        <item >image1</item>
+        <item >image2</item>
+        <item >image3</item>
+        <item >image4</item>
+        <item >image5</item>
+        <item >image6</item>
+       
+    </string-array>
+    
+   <string-array name="regno_Arr">
+  <item >AP002</item>
+<item >AP003</item>
+
+<item >AP004</item>
+<item >AP005</item>
+<item >AP007</item>
+<item >AP016</item>
+<item >AP021</item>
+<item >AP026</item>
+<item >AP037</item>
+<item >AP102</item>
+<item >AP103</item>
+<item >AP105</item>
+<item >AP107</item>
+<item >AP116</item>
+<item >AP121</item>
+<item >AP127</item>
+<item >AP131</item>
+<item >AP137</item>
+<item >AP202</item>
+<item >AP203</item>
+<item >AP204</item>
+<item >AP205</item>
+<item >AP216</item>
+<item >AP221</item>
+<item >AP226</item>
+<item >AP231</item>
+<item >AP237</item>
+<item >AP27</item>
+<item >AP30</item>
+<item >AP305</item>
+<item >AP31</item>
+<item >AP316</item>
+<item >AP326</item>
+<item >AP327</item>
+<item >AP337</item>
+<item >AP35</item>
+<item >AP402</item>
+<item >AP405</item>
+<item >AP416</item>
+<item >AP426</item>
+<item >AP427</item>
+<item >AP437</item>
+<item >AP516</item>
+<item >AP537</item>
+<item >AP607</item>
+<item >AP616</item>
+<item >AP637</item>
+<item >AP705</item>
+<item >AP707</item>
+
+<item >AR-01</item>
+<item >AR-02</item>
+<item >AR-03</item>
+<item >AR-04</item>
+<item >AR-05</item>
+<item >AR-06</item>
+<item >AR-07</item>
+<item >AR-08</item>
+<item >AR-09</item>
+<item >AR-10</item>
+<item >AR-11</item>
+<item >AR-12</item>
+<item >AR-13</item>
+<item >AR-14</item>
+<item >AR-15</item>
+<item >AR-16</item>
+<item >AR-17</item>
+
+
+<item >AS-01</item>
+<item >AS-02</item>
+<item >AS-03</item>
+<item >AS-04</item>
+<item >AS-05</item>
+<item >AS-06</item>
+<item >AS-07</item>
+<item >AS-08</item>
+<item >AS-09</item>
+<item >AS-10</item>
+<item >AS-11</item>
+<item >AS-12</item>
+<item >AS-13</item>
+<item >AS-14</item>
+<item >AS-15</item>
+<item >AS-16</item>
+<item >AS-17</item>
+<item >AS-18</item>
+<item >AS-19</item>
+<item >AS-20</item>
+<item >AS-21</item>
+<item >AS-22</item>
+<item >AS-23</item>
+<item >AS-24</item>
+<item >AS-25</item>
+<item >AS-26</item>
+<item >AS-27</item>
+<item >AS-28</item>
+<item >AS-29</item>
+<item >AS-30 </item>
+<item >AS-31</item>
+
+<item >BR-01</item>
+<item >BR-02</item>
+<item >BR-03</item>
+<item >BR-04</item>
+<item >BR-05</item>
+<item >BR-06</item>
+<item >BR-07</item>
+<item >BR-08</item>
+<item >BR-09</item>
+<item >BR-10</item>
+<item >BR-11</item>
+<item >BR-19</item>
+<item >BR-21</item>
+<item >BR-22</item>
+<item >BR-24</item>
+<item >BR-25</item>
+<item >BR-26</item>
+<item >BR-27</item>
+<item >BR-28</item>
+<item >BR-29</item>
+<item >BR-30</item>
+<item >BR-31</item>
+<item >BR-32</item>
+<item >BR-33</item>
+<item >BR-34</item>
+<item >BR-37</item>
+<item >BR-38</item>
+<item >BR-39</item>
+<item >BR-43</item>
+<item >BR-44</item>
+<item >BR-45</item>
+<item >BR-46</item>
+<item >BR-50</item>
+<item >BR-51</item>
+<item >BR-52</item>
+<item >BR-53</item>
+<item >BR-55</item>
+<item >BR-56</item>
+<item >BR-57</item>
+
+<item >CG-01</item>
+<item >CG-02</item>
+<item >CG-03</item>
+<item >CG-04</item>
+<item >CG-05</item>
+<item >CG-06</item>
+<item >CG-07</item>
+<item >CG-08</item>
+<item >CG-09</item>
+<item >CG-10</item>
+<item >CG-11</item>
+<item >CG-12</item>
+<item >CG-13</item>
+<item >CG-14</item>
+<item >CG-15</item>
+<item >CG-16</item>
+<item >CG-17</item>
+<item >CG-18</item>
+<item >CG-19</item>
+<item >CG-20</item>
+<item >CG-21</item>
+<item >CG-22</item>
+<item >CG-23</item>
+<item >CG-24</item>
+<item >CG-25</item>
+<item >CG-26</item>
+<item >CG-27</item>
+<item >CG-28</item>
+<item >CG-29</item>
+<item >CG-30</item>
+
+<item >CH-01</item>
+<item >CH-02</item>
+<item >CH-03</item>
+<item >CH-04</item>
+<item >DD-02</item>
+<item >DD-03</item>
+
+<item >DL-1</item>
+<item >DL-2</item>
+<item >DL-3</item>
+<item >DL-4</item>
+<item >DL-5</item>
+<item >DL-6</item>
+<item >DL-7</item>
+<item >DL-8</item>
+<item >DL-9</item>
+<item >DL-10</item>
+<item >DL-11</item>
+<item >DL-12</item>
+<item >DL-13</item>
+<item >DL-14</item>
+<item >DL-15</item>
+<item >DL-16</item>
+<item >DL-17</item>
+<item >DL-18</item>
+
+<item >DN-09</item>
+
+<item >GA-01</item>
+<item >GA-02</item>
+<item >GA-03</item>
+<item >GA-04</item>
+<item >GA-05</item>
+<item >GA-06</item>
+<item >GA-07</item>
+<item >GA-08</item>
+<item >GA-09</item>
+<item >GA-10</item>
+<item >GA-11</item>
+<item >GA-12</item>
+
+<item >GJ-1</item>
+<item >GJ-2</item>
+<item >GJ-3</item>
+<item >GJ-4</item>
+<item >GJ-5</item>
+<item >GJ-6</item>
+<item >GJ-7</item>
+<item >GJ-8</item>
+<item >GJ-9</item>
+<item >GJ-10</item>
+<item >GJ-11</item>
+<item >GJ-12</item>
+<item >GJ-13</item>
+<item >GJ-14</item>
+<item >GJ-15</item>
+<item >GJ-16</item>
+<item >GJ-17</item>
+<item >GJ-18</item>
+<item >GJ-19</item>
+<item >GJ-20</item>
+<item >GJ-21</item>
+<item >GJ-22</item>
+<item >GJ-23</item>
+<item >GJ-24</item>
+<item >GJ-25</item>
+<item >GJ-26</item>
+<item >GJ-27</item>
+<item >GJ-28</item>
+<item >GJ-29</item>
+<item >GJ-30</item>
+<item >GJ-31</item>
+<item >GJ-32</item>
+<item >GJ-33</item>
+<item >GJ-34</item>
+<item >GJ-35</item>
+<item >GJ-36</item>
+<item >GJ-37</item>
+<item >GJ-38</item>
+
+
+
+
+
+
+
+    </string-array>
+    
+</resources>

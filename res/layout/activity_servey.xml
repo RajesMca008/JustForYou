@@ -1,0 +1,343 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/shadow" >
+
+        <RadioGroup
+            android:id="@+id/myRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_category"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shadow_layer"
+            android:checkedButton="@+id/goods"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <RadioButton
+                android:id="@+id/goods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/spn_vehtype"
+                android:layout_alignLeft="@+id/myRadioGroup"
+                android:layout_toLeftOf="@+id/passenger"
+                android:layout_weight="0.5"
+                android:paddingLeft="5dp"
+                android:text=" Goods"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/passengers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/spn_vehtype"
+                android:layout_alignLeft="@+id/myRadioGroup"
+                android:layout_toLeftOf="@+id/passenger"
+                android:layout_weight="0.5"
+                android:paddingLeft="5dp"
+                android:text=" Passenger"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="Select Category"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <Spinner
+            android:id="@+id/spn_vehtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/myRadioGroup"
+            android:layout_below="@+id/myRadioGroup"
+             android:textColor="@color/white"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/txt_vehtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/myRadioGroup"
+            android:layout_centerHorizontal="true"
+            android:text="Select Vehicle Type"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FBFBFB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txt_vehregno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/spn_vehtype"
+            android:layout_below="@+id/spn_vehtype"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="20dp"
+            android:text="Enter Vehicle Reg. No"
+            android:textColor="#FBFBFB"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txt_vehregno"
+            android:layout_below="@+id/txt_vehregno"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+             android:textColor="@color/white"
+            android:hint="Reg.No: TS 15 EC 2695" >
+
+            <requestFocus />
+        </AutoCompleteTextView>
+
+        <ImageView
+            android:id="@+id/catute_image"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/autoCompleteTextView1"
+            android:contentDescription="Capture Image"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/txt_origin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/catute_image"
+            android:layout_marginTop="5dp"
+            android:text="Enter Origin"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_origin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txt_origin"
+            android:layout_below="@+id/txt_origin"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Enter Origin"
+            android:inputType="text"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txt_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/et_origin"
+            android:layout_below="@+id/et_origin"
+            android:layout_marginTop="5dp"
+            android:text="Enter Destination"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txt_destination"
+            android:layout_below="@+id/txt_destination"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+             android:textColor="@color/white"
+            android:hint="Enter Destination"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/txt_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/et_destination"
+            android:layout_below="@+id/et_destination"
+            android:layout_marginTop="5dp"
+            android:text="Select Trip Frequency"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spn_tripfrq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txt_trip"
+             android:textColor="@color/white"
+            android:layout_alignRight="@+id/txt_destination"
+            android:layout_below="@+id/txt_trip" />
+
+        <EditText
+            android:id="@+id/et_times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/spn_tripfrq"
+            android:layout_alignTop="@+id/spn_tripfrq"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/spn_tripfrq"
+            android:ems="10"
+             android:textColor="@color/white"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/txt_times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/et_times"
+            android:layout_alignBottom="@+id/et_times"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/et_times"
+            android:text="Times"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_r_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/spn_tripfrq"
+            android:layout_below="@+id/spn_tripfrq"
+            android:layout_marginTop="5dp"
+            android:text="Select Round Trip"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_roundtrip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_r_trip"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <RadioGroup
+                android:id="@+id/rg_roundtrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_category"
+                android:checkedButton="@+id/rb_yes"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <RadioButton
+                    android:id="@+id/rb_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/spn_vehtype"
+                    android:layout_alignLeft="@+id/myRadioGroup"
+                    android:layout_toLeftOf="@+id/passenger"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:text="YES"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/spn_vehtype"
+                    android:layout_alignLeft="@+id/myRadioGroup"
+                    android:layout_toLeftOf="@+id/passenger"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:text="NO"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_roundtrip"
+            
+            android:layout_marginTop="5dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/spn_tripfrq"
+                android:layout_below="@+id/spn_tripfrq"
+                android:layout_marginTop="5dp"
+                android:text="Select Commodity"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spn_commodity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_trip"
+                 android:textColor="@color/white"
+                android:layout_alignRight="@+id/et_destination"
+                android:layout_below="@+id/txt_trip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/spn_tripfrq"
+                android:layout_below="@+id/spn_tripfrq"
+                android:layout_marginTop="5dp"
+                android:text="Enter Trip Length"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_triplength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spn_tripfrq"
+                android:layout_alignTop="@+id/spn_tripfrq"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/spn_tripfrq"
+                android:ems="10"
+                 android:textColor="@color/white"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spn_tripfrq"
+                android:layout_alignTop="@+id/spn_tripfrq"
+                android:layout_margin="10dp"
+                android:background="@color/sing_in_button"
+                android:gravity="center"
+                android:text="Save &amp; Continue"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_vehregno"
+            android:layout_toRightOf="@+id/txt_category"
+            android:text="Capture RegNo." />
+    </RelativeLayout>
+
+</ScrollView>

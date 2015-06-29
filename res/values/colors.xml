@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="yellowsandal">#FEB834</color>
+    <color name="lightsandal">#FFEABF</color>
+    <color name="darkred">#C81B20</color>
+    <color name="darkgray">#666666</color>
+    <color name="darkgreen">#444C23</color>
+    <color name="text_lightgray">#9E9E9E</color>
+     <color name="blue">#0B0B61</color>
+     <color name="listcolr">#808080</color>
+   <color name="listcolrafter">#f7b501</color>
+     
+   
+    <color name="sing_in_button">#014991</color>
+    <color name="button_border">#787A7C</color>
+    <color name="sing_in_text">#C6CDD4</color>
+
+    <color name="edit_text_color">#B1B3B5</color>
+    <color name="edit_disable_color">#E0DADA</color>
+    <color name="error_color">#E83E55</color>
+    <color name="lic_bg_color">#979596</color>
+    <color name="text_bg_color">#E4E1E3</color>
+    <color name="lic_text_color">#C9C2C3</color>
+    <color name="header_text_color">#C52128</color>
+    <color name="home_text_color">#054189</color>
+    <color name="red">#fffa2821</color>
+    <color name="text_color">#2E2E2E</color>
+   
+</resources>
