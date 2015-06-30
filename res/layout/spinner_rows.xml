@@ -4,7 +4,7 @@
  android:layout_height="wrap_content"
  android:orientation="vertical"
  android:padding="3dip"
- android:background="@drawable/shadow"
+ android:background="@color/black"
 >
     <ImageView
          android:id="@+id/image"

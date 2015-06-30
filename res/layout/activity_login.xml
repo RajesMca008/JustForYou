@@ -14,6 +14,19 @@
         android:gravity="center_vertical" 
        >
 
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:text="Login"
+            android:textColor="@color/black"
+          android:textStyle="bold"
+            android:textSize="24sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
         <EditText
             android:id="@+id/et_username"
             android:layout_width="300dp"
@@ -24,6 +37,7 @@
             android:text="admin"
             android:hint="@string/uname"
             android:textColor="@color/black"
+            android:layout_below="@id/tv_title"
             android:paddingLeft="10dp" android:singleLine="true">
          
         </EditText>
@@ -34,7 +48,7 @@
             android:layout_height="50dp"
             android:layout_alignLeft="@+id/et_username"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/et_username"
+            android:layout_below="@id/et_username"
             android:layout_marginTop="20dp"
             android:background="@drawable/textfiled"
             android:ems="10"
@@ -57,18 +71,7 @@
             android:textColor="@color/white"
             android:text="@string/login" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/et_username"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:text="Login"
-            android:textColor="@color/black"
-          android:textStyle="bold"
-            android:textSize="24sp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
 
     </RelativeLayout>
 
