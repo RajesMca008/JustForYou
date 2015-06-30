@@ -16,6 +16,7 @@
     <color name="sing_in_button">#014991</color>
     <color name="button_border">#787A7C</color>
     <color name="sing_in_text">#C6CDD4</color>
+    <color name="theme_color">#33BF9A</color>
 
     <color name="edit_text_color">#B1B3B5</color>
     <color name="edit_disable_color">#E0DADA</color>

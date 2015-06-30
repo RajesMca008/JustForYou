@@ -9,15 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:background="@drawable/shadow" >
+         >
 
+         <TextView
+            android:id="@+id/txt_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp"
+            android:text="Select Category"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+         
         <RadioGroup
             android:id="@+id/myRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_category"
             android:layout_marginTop="8dp"
-            android:background="@drawable/shadow_layer"
+             
             android:checkedButton="@+id/goods"
             android:orientation="horizontal"
             android:weightSum="1" >
@@ -27,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/spn_vehtype"
-                android:layout_alignLeft="@+id/myRadioGroup"
+                android:layout_alignLeft="@id/myRadioGroup"
                 android:layout_toLeftOf="@+id/passenger"
                 android:layout_weight="0.5"
                 android:paddingLeft="5dp"
@@ -40,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/spn_vehtype"
-                android:layout_alignLeft="@+id/myRadioGroup"
+                android:layout_alignLeft="@id/myRadioGroup"
                 android:layout_toLeftOf="@+id/passenger"
                 android:layout_weight="0.5"
                 android:paddingLeft="5dp"
@@ -48,37 +59,34 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </RadioGroup>
+        
+         <View  android:layout_margin="3dp" android:layout_below="@+id/myRadioGroup" android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/white" android:id="@+id/view1"/>
+      
 
-        <TextView
-            android:id="@+id/txt_category"
+         <TextView
+            android:id="@+id/txt_vehtype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text="Select Category"
+            android:layout_below="@id/view1"
+             android:layout_alignParentLeft="true"
+            android:text="Select Vehicle Type:"
+             
+           android:layout_marginTop="3dp"
             android:textColor="@color/white"
-            android:textSize="22sp" />
-
+            android:textSize="20sp" />
+         
+       
         <Spinner
             android:id="@+id/spn_vehtype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/myRadioGroup"
-            android:layout_below="@+id/myRadioGroup"
+             
+            android:layout_below="@+id/txt_vehtype"
              android:textColor="@color/white"
-            android:layout_marginTop="25dp" />
+            android:layout_marginTop="5dp" />
 
-        <TextView
-            android:id="@+id/txt_vehtype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/myRadioGroup"
-            android:layout_centerHorizontal="true"
-            android:text="Select Vehicle Type"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FBFBFB"
-            android:textSize="20sp" />
+        
+         
 
         <TextView
             android:id="@+id/txt_vehregno"
@@ -86,10 +94,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/spn_vehtype"
             android:layout_below="@+id/spn_vehtype"
-            android:layout_marginLeft="29dp"
+             
             android:layout_marginTop="20dp"
-            android:text="Enter Vehicle Reg. No"
-            android:textColor="#FBFBFB"
+            android:text="Enter Vehicle Reg.No:"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -104,16 +111,34 @@
              android:textColor="@color/white"
             android:hint="Reg.No: TS 15 EC 2695" >
 
-            <requestFocus />
+            
         </AutoCompleteTextView>
 
+        <LinearLayout android:id="@+id/image_content_layout"  android:layout_below="@id/autoCompleteTextView1" android:layout_width="match_parent" android:layout_height="45dp" android:background="@color/theme_color">
+           
+            <ImageView android:layout_marginLeft="5dp"   android:layout_width="wrap_content" android:layout_gravity="center_vertical" android:layout_height="wrap_content"  android:background="@android:drawable/ic_menu_camera" />
+             <TextView
+            android:id="@+id/btn_camera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/txt_vehregno"
+            android:layout_toRightOf="@+id/txt_category"
+           android:background="@color/theme_color"
+           android:gravity="center_vertical" android:layout_marginLeft="5dp"
+           android:textSize="20dp"
+            android:text="Capture RegNo." />
+        </LinearLayout>
+       
+        
         <ImageView
             android:id="@+id/catute_image"
-            android:layout_width="250dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/autoCompleteTextView1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/image_content_layout"
             android:contentDescription="Capture Image"
-            android:visibility="invisible" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/default_vech"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/txt_origin"
@@ -121,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/catute_image"
             android:layout_marginTop="5dp"
-            android:text="Enter Origin"
+            android:text="Enter Origin:"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -145,7 +170,7 @@
             android:layout_alignLeft="@+id/et_origin"
             android:layout_below="@+id/et_origin"
             android:layout_marginTop="5dp"
-            android:text="Enter Destination"
+            android:text="Enter Destination:"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -169,7 +194,7 @@
             android:layout_alignLeft="@+id/et_destination"
             android:layout_below="@+id/et_destination"
             android:layout_marginTop="5dp"
-            android:text="Select Trip Frequency"
+            android:text="Select Trip Frequency:"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -203,7 +228,7 @@
             android:layout_alignBottom="@+id/et_times"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/et_times"
-            android:text="Times"
+            android:text="Times:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -216,7 +241,7 @@
             android:layout_alignLeft="@+id/spn_tripfrq"
             android:layout_below="@+id/spn_tripfrq"
             android:layout_marginTop="5dp"
-            android:text="Select Round Trip"
+            android:text="Select Round Trip:"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -244,7 +269,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/spn_vehtype"
-                    android:layout_alignLeft="@+id/myRadioGroup"
+                    
                     android:layout_toLeftOf="@+id/passenger"
                     android:layout_weight="0.5"
                     android:paddingLeft="5dp"
@@ -256,7 +281,7 @@
                     android:id="@+id/rb_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/spn_vehtype"
+                     
                     android:layout_alignLeft="@+id/myRadioGroup"
                     android:layout_toLeftOf="@+id/passenger"
                     android:layout_weight="0.5"
@@ -281,7 +306,7 @@
                 android:layout_alignLeft="@+id/spn_tripfrq"
                 android:layout_below="@+id/spn_tripfrq"
                 android:layout_marginTop="5dp"
-                android:text="Select Commodity"
+                android:text="Select Commodity:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -301,7 +326,7 @@
                 android:layout_alignLeft="@+id/spn_tripfrq"
                 android:layout_below="@+id/spn_tripfrq"
                 android:layout_marginTop="5dp"
-                android:text="Enter Trip Length"
+                android:text="Enter Trip Length:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -331,13 +356,7 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_vehregno"
-            android:layout_toRightOf="@+id/txt_category"
-            android:text="Capture RegNo." />
+        
     </RelativeLayout>
 
 </ScrollView>

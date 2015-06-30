@@ -360,7 +360,7 @@ public class MyServey extends ActionBarActivity {
 	//mImageBitmap = null;
 	//	mVideoUri = null;
 
-	 	Button picBtn = (Button) findViewById(R.id.btn_camera);
+		 TextView picBtn = (TextView) findViewById(R.id.btn_camera);
 		setBtnListenerOrDisable( 
 				picBtn, 
 				mTakePicOnClickListener,
@@ -440,8 +440,8 @@ public class MyServey extends ActionBarActivity {
 	}
 	
 	private void setBtnListenerOrDisable( 
-			Button btn, 
-			Button.OnClickListener onClickListener,
+			TextView btn, 
+			TextView.OnClickListener onClickListener,
 			String intentName
 	) {
 		if (isIntentAvailable(this, intentName)) {

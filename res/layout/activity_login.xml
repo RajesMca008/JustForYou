@@ -23,6 +23,7 @@
             android:ems="10"
             android:text="admin"
             android:hint="@string/uname"
+            android:textColor="@color/black"
             android:paddingLeft="10dp" android:singleLine="true">
          
         </EditText>
@@ -39,6 +40,7 @@
             android:ems="10"
                android:text="admin"
             android:hint="@string/pwd"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:paddingLeft="10dp" android:singleLine="true"/>
 
