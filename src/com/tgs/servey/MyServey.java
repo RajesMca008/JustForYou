@@ -509,8 +509,9 @@ public class MyServey extends ActionBarActivity {
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
 
+			s = s.toString();
 			 
-			dbObj.getDetails(s.toString());
+			dbObj.getDetails((new StringBuilder("SELECT town,district,state FROM india_master WHERE town LIKE '")).append(s).append("%' LIMIT 10").toString());
            /* j = 0;
             
             charsequence = obj.getDetails((new StringBuilder("SELECT town,district,state FROM india_master WHERE town LIKE '")).append(charsequence).append("%' LIMIT 10").toString());

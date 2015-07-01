@@ -102,6 +102,9 @@ public class PlacesDatabaseHandler extends SQLiteOpenHelper
         	   System.out.println("TEST place"+cursor.getString(0));
 		} while (cursor.isLast());
  
+           cursor.close();
+           sqlitedatabase.close();
+           
            return arraylist;
     } 
 
