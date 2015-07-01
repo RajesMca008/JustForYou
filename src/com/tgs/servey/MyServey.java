@@ -8,16 +8,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Geocoder;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,11 +32,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
@@ -51,18 +58,19 @@ public class MyServey extends ActionBarActivity {
 	String[] goodsvehTypeArray ;
 	Button btn_save;
 	String str_adress="";
-	EditText et_origin,et_destination,et_times,et_tripLength;
+	EditText et_origin,et_destination,et_times,et_tons,et_occupancy;
 	double latitude;
 	double longitude;
 	String toDay_DATE;
 	String[] language;
-	String[] commodity;
+	String[] goods_commodity;
+	String[] passenger_commodity;
 	String[] tripfrq;
 	  public  ArrayList<SpinnerModel> CustomListViewValuesArr = new ArrayList<SpinnerModel>();
-	    TextView output = null;
+	    TextView output = null,tv_occupation,tv_commoditytype,tv_wtons,txt_occupancy,tv_date;
 	    CustomAdapter adapter;
 	    MyServey activity = null;
-	    RadioGroup rg_vehtype,rg_roundTrip;
+	    RadioGroup rg_vehtype,rg_roundTrip,rg_monthlypass,rg_willpaytoll;
 	    Spinner  spinner_vehType,spn_tripfreq,spn_commodity;
 	EditText et_UserName=null;
 	EditText et_Password=null;
@@ -113,14 +121,7 @@ public class MyServey extends ActionBarActivity {
 		}
 		
 		String dirName=prefixDate+minutFrame;
-		 
-		
-		
-		
-		
-		
-		 
-	//	return getString(R.string.album_name);
+
 		return prefixDate;
 	}
 	
@@ -203,7 +204,7 @@ public class MyServey extends ActionBarActivity {
 		/* Decode the JPEG file into a Bitmap */
 		Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 		
-		/* Associate the Bitmap to the ImageView */
+		/* Associate the Bitmap to the ImageView */										
 		mImageView.setVisibility(View.VISIBLE);
 		mImageView.setImageBitmap(bitmap);
 		mVideoUri = null;
@@ -276,10 +277,16 @@ public class MyServey extends ActionBarActivity {
 		
 		db_Handler=new DatabaseHandler(getApplicationContext());
  
+		txt_occupancy=(TextView)findViewById(R.id.txt_occupancy);
 		et_origin=(EditText)findViewById(R.id.et_origin);
 		et_destination=(EditText)findViewById(R.id.et_destination);
 		et_times=(EditText)findViewById(R.id.et_times);
-		et_tripLength=(EditText)findViewById(R.id.et_triplength);
+		tv_wtons=(TextView)findViewById(R.id.tv_wtons);
+		et_tons=(EditText)findViewById(R.id.et_wtons);
+	//	et_tripLength=(EditText)findViewById(R.id.et_triplength);
+		//tv_occupation=(TextView)findViewById(R.id.txt_occupancy);
+		et_occupancy=(EditText)findViewById(R.id.et_occupancy);
+		tv_commoditytype=(TextView)findViewById(R.id.tv_commoditytype);
 		btn_save=(Button) findViewById(R.id.btn_save);
 		spinner_vehType = (Spinner)findViewById(R.id.spn_vehtype);
 		spn_commodity=(Spinner)findViewById(R.id.spn_commodity);
@@ -288,13 +295,28 @@ public class MyServey extends ActionBarActivity {
 		  passengerTypeArray= getResources().getStringArray(R.array.passengertype);
 		  tripfrq=getResources().getStringArray(R.array.tripFreq);
 		  goodsvehTypeArray = getResources().getStringArray(R.array.goodsvehArr);
-		  commodity=getResources().getStringArray(R.array.commodity);
+		  goods_commodity=getResources().getStringArray(R.array.goods_commodity);
+		  passenger_commodity=getResources().getStringArray(R.array.pass_commodity);
 		  language=getResources().getStringArray(R.array.regno_Arr);
 		  passengervehTypeArray = getResources().getStringArray(R.array.passengerVehArr);
 		rg_vehtype=(RadioGroup)findViewById(R.id.myRadioGroup);
+		tv_date=(TextView)findViewById(R.id.tv_dateview);
+		
+		 Date dNow = new Date( );
+	      SimpleDateFormat ft = 
+	      new SimpleDateFormat ("E dd-MM-yyyy hh:mm");
+	      Animation animBlink;
+	    // System.out.println("Current Date: " + ft.format(dNow));
+	      tv_date.setText(ft.format(dNow));
+		
 		rg_roundTrip=(RadioGroup)findViewById(R.id.rg_roundtrip);
+		rg_monthlypass=(RadioGroup)findViewById(R.id.rg_mpass);
+		rg_willpaytoll=(RadioGroup)findViewById(R.id.rg_wptoll);
 		
-		
+		txt_occupancy.setVisibility(View.GONE);
+		et_occupancy.setVisibility(View.GONE);
+		  registerReceiver(mbcr,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+	
 		  activity  = this;
 		   geocoder = new Geocoder(this, Locale.ENGLISH);
 		//  gpsTracker = new GPSTracker(MyServey.this);
@@ -306,16 +328,15 @@ public class MyServey extends ActionBarActivity {
           actv.setAdapter(acadapter);//setting the adapter data into the AutoCompleteTextView  
           actv.setTextColor(Color.WHITE);  
 	        setGoodsListData();
-	        
+	     
 	        Resources res = getResources(); 
 	        adapter = new CustomAdapter(activity, R.layout.spinner_rows, CustomListViewValuesArr,res);
 	        spinner_vehType.setAdapter(adapter);
 	        
-	        
-	        
-	        
-	        ArrayAdapter<String> adapter_commodity = new ArrayAdapter<String>(this,  android.R.layout.simple_dropdown_item_1line, commodity);
 	        ArrayAdapter<String> adapter_tripfreq = new ArrayAdapter<String>(this,  android.R.layout.simple_dropdown_item_1line, tripfrq);
+	      
+	        ArrayAdapter<String> adapter_commodity = new ArrayAdapter<String>(this,  android.R.layout.simple_dropdown_item_1line, goods_commodity);
+		       
 	        spn_commodity.setAdapter(adapter_commodity);
 	        spn_tripfreq.setAdapter(adapter_tripfreq);
 	        
@@ -386,9 +407,21 @@ public class MyServey extends ActionBarActivity {
 			       String veh_frq = spn_tripfreq.getSelectedItem().toString();
 			       System.out.println("veh reg no"+vehregno);
 			     
+			       int selected_roundtrip = rg_roundTrip.getCheckedRadioButtonId();
+			       int selected_monthlypass = rg_monthlypass.getCheckedRadioButtonId();
+			       int selected_paytoll = rg_willpaytoll.getCheckedRadioButtonId();
 			       
+			    RadioButton rb_sel_roundtrip = (RadioButton) findViewById(selected_roundtrip);
+			    RadioButton rb_sel_monthlypass = (RadioButton) findViewById(selected_monthlypass);
+			    RadioButton rb_sel_paytoll = (RadioButton) findViewById(selected_paytoll);
+			     
+			   
 			       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
 					toDay_DATE= sdf.format(new Date());
+					
+					if(vehregno.length()!=0 && et_origin.getText().toString().length()!=0 && et_destination.getText().toString().length()!=0
+							&& veh_comd.length()!=0 && et_times.length()!=0 && veh_frq.length()!=0 
+							 && et_tons.getText().toString().length()!=0){
 			       
 			       ContentValues cv_values=new ContentValues();
 			       cv_values.put(DatabaseHandler.VEH_REG_NO,vehregno);
@@ -397,18 +430,24 @@ public class MyServey extends ActionBarActivity {
 			       cv_values.put(DatabaseHandler.COMMODITY,veh_comd);
 			       cv_values.put(DatabaseHandler.TRIP_TIME,et_times.getText().toString());
 			       cv_values.put(DatabaseHandler.TRIP_FREQ,veh_frq);
-			       cv_values.put(DatabaseHandler.RETURN_TRIP,"NO");
-			       cv_values.put(DatabaseHandler.MONTHLY_PASS,"");
-			       cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,"");
-			       cv_values.put(DatabaseHandler.PAY_TOLL,"");
+			       cv_values.put(DatabaseHandler.RETURN_TRIP,rb_sel_roundtrip.getText().toString());
+			       cv_values.put(DatabaseHandler.MONTHLY_PASS,rb_sel_monthlypass.getText().toString());
+			       cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,et_tons.getText().toString());
+			       cv_values.put(DatabaseHandler.PAY_TOLL,rb_sel_paytoll.getText().toString());
 			       cv_values.put(DatabaseHandler.LATITUDE,latitude);
 			       cv_values.put(DatabaseHandler.LONGITUDE,longitude);
 			       cv_values.put(DatabaseHandler.IMAGEPATH,mCurrentPhotoPath);
 			       cv_values.put(DatabaseHandler.CREATED_DATE,toDay_DATE);
 			       db_Handler.insert(DatabaseHandler.TABLE_servey_Data, cv_values);
 			       
-			      finish();
-			}
+			   //   finish();
+			       Intent i=new Intent(getApplicationContext(), MainActivity.class);
+			       startActivity(i);
+			       finish();
+			     }else{
+						Toast.makeText(getApplicationContext(), "Please enter all fields!", Toast.LENGTH_LONG).show();
+					}
+			}  
 		});
 
 
@@ -463,6 +502,16 @@ public class MyServey extends ActionBarActivity {
 	   public void setGoodsListData()
 	    {
 	    
+		   tv_commoditytype.setText("Commodity Type");
+		   
+		   ArrayAdapter<String> adapter_commodity = new ArrayAdapter<String>(this,  android.R.layout.simple_dropdown_item_1line, goods_commodity);
+	       
+	        spn_commodity.setAdapter(adapter_commodity);
+	        tv_wtons.setVisibility(View.VISIBLE);
+		       et_tons.setVisibility(View.VISIBLE);
+		       
+		       txt_occupancy.setVisibility(View.GONE);
+				et_occupancy.setVisibility(View.GONE);
 			for (int i =0; i < goodsTypeArray.length; i++) {
 				
 				final SpinnerModel sched = new SpinnerModel();
@@ -480,7 +529,14 @@ public class MyServey extends ActionBarActivity {
 	    }
 	   public void setPassengerListData()
 	    {
-	    	
+		   ArrayAdapter<String> adapter_commodity = new ArrayAdapter<String>(this,  android.R.layout.simple_dropdown_item_1line, passenger_commodity);
+	       tv_wtons.setVisibility(View.GONE);
+	       et_tons.setVisibility(View.GONE);
+	        spn_commodity.setAdapter(adapter_commodity);
+		   tv_commoditytype.setText("Purpose");
+		   
+		   txt_occupancy.setVisibility(View.VISIBLE);
+			et_occupancy.setVisibility(View.VISIBLE);
 			for (int i = 0; i <passengerTypeArray.length; i++) {
 				
 				final SpinnerModel sched = new SpinnerModel();
@@ -516,4 +572,22 @@ public class MyServey extends ActionBarActivity {
 			startActivity(i);
 		}
 	 
+		  private BroadcastReceiver mbcr=new BroadcastReceiver()
+		  {
+		  public void onReceive(Context c, Intent i)
+		  {
+			  tv_date.setText("");
+		  int level=i.getIntExtra("level", 0);
+		  
+		  Date dNow = new Date( );
+	      SimpleDateFormat ft = 
+	      new SimpleDateFormat ("E dd-MM-yyyy hh:mm");
+	      Animation animBlink;
+		  tv_date.setText(ft.format(dNow)+"-"+Integer.toString(level)+"%");
+		
+		  }
+		};
+		
+		
+	
 }

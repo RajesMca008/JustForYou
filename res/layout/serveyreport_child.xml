@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="fill_parent"
- android:layout_height="160dp"
- android:orientation="vertical"
- android:padding="3dip"
- android:background="@drawable/shadow"
->
-    <ImageView
-         android:id="@+id/image"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:background="@drawable/image1"
-        
-         />
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow"
+    android:orientation="vertical"
+    android:padding="3dip" >
+
+    <TextView
+        android:id="@+id/txt_origin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txt_destnce"
+        android:layout_alignBottom="@+id/txt_destnce"
+        android:layout_alignLeft="@+id/txt_datetime"
+        android:text="Origin"
+        android:textColor="#FBFBFB"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_destnce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/vehregno"
+        android:text="Destance"
+        android:textColor="#FBFBFB"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/vehregno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/image"
-        android:layout_marginLeft="28dp"
-        android:layout_toRightOf="@+id/image"
+        android:layout_alignBottom="@+id/txt_datetime"
+        android:layout_marginLeft="38dp"
+        android:layout_toRightOf="@+id/txt_origin"
         android:padding="3dip"
         android:text="vgvgvg"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txt_origin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/vehregno"
-        android:layout_below="@+id/vehregno"
-        android:layout_marginTop="20dp"
-        android:text="Origin" 
-        android:textStyle="bold" 
-        android:textColor="#FBFBFB"/>
-
-    <TextView
-        android:id="@+id/txt_destnce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/image"
-        android:layout_alignLeft="@+id/txt_origin"
-        android:text="Destance"
-           android:textStyle="bold" 
-        android:textColor="#FBFBFB" />
-
-    <TextView
         android:id="@+id/txt_datetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/image"
-        android:layout_below="@+id/image"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="27dp"
-           android:textStyle="bold" 
-        android:textColor="#FBFBFB" 
-        android:text="Date" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txt_origin"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:text="Date"
+        android:textColor="#FBFBFB"
+        android:textStyle="bold" />
 
 </RelativeLayout>

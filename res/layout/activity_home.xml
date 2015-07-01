@@ -44,4 +44,16 @@
         android:text="Servey Report"
         android:textColor="@color/white" />
 
+    <Button
+        android:id="@+id/btn_export"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@+id/btn_startservey"
+        android:layout_alignRight="@+id/btn_startservey"
+        android:layout_below="@+id/btn_startservey"
+        android:layout_marginTop="18dp"
+        android:background="@color/sing_in_button"
+        android:text="Exoprt to sdcard"
+        android:textColor="@color/white" />
+
 </RelativeLayout>

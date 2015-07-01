@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:text="Select Category"
             android:textColor="@color/white"
             android:textSize="22sp" />
@@ -138,12 +138,34 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/default_vech"
             android:visibility="visible" />
+        
+        
+          <TextView
+            android:id="@+id/txt_occupancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/catute_image"
+            android:layout_marginTop="5dp"
+            android:text="Occupancy"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+            <EditText
+            android:id="@+id/et_occupancy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_occupancy"
+            android:layout_marginTop="5dp"
+            android:hint="Enter Occupancy"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_origin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/catute_image"
+            android:layout_below="@+id/et_occupancy"
             android:layout_marginTop="5dp"
             android:text="Enter Origin:"
             android:textColor="@color/white"
@@ -239,7 +261,7 @@
             android:layout_alignLeft="@+id/spn_tripfrq"
             android:layout_below="@+id/spn_tripfrq"
             android:layout_marginTop="5dp"
-            android:text="Select Round Trip:"
+            android:text="Return Trip same day:"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -298,12 +320,13 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/tv_commoditytype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/spn_tripfrq"
                 android:layout_below="@+id/spn_tripfrq"
                 android:layout_marginTop="5dp"
-                android:text="Select Commodity:"
+                android:text="Commodity Type"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -323,22 +346,140 @@
                 android:layout_alignLeft="@+id/spn_tripfrq"
                 android:layout_below="@+id/spn_tripfrq"
                 android:layout_marginTop="5dp"
-                android:text="Enter Trip Length:"
+                android:text="Monthly pass"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/et_triplength"
+             <LinearLayout
+            android:id="@+id/ll_mpass"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_r_trip"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <RadioGroup
+                android:id="@+id/rg_mpass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/spn_tripfrq"
-                android:layout_alignTop="@+id/spn_tripfrq"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/spn_tripfrq"
-                android:ems="10"
-                 android:textColor="@color/white"
-                android:inputType="number" />
+                android:layout_below="@+id/txt_category"
+                android:checkedButton="@+id/rb_mpassyes"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <RadioButton
+                    android:id="@+id/rb_mpassyes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/spn_vehtype"
+                    
+                    android:layout_toLeftOf="@+id/passenger"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:text="YES"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_mpassno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:layout_alignLeft="@+id/myRadioGroup"
+                    android:layout_toLeftOf="@+id/passenger"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:text="NO"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RadioGroup>
+        </LinearLayout>
+        
+             
+              <TextView
+                  android:id="@+id/tv_wtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/spn_tripfrq"
+                android:layout_below="@+id/spn_tripfrq"
+                android:layout_marginTop="5dp"
+                android:text="Weight in tons"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+              
+                <EditText
+                    android:id="@+id/et_wtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_wtons"
+                android:layout_below="@+id/tv_wtons"
+                android:layout_marginTop="5dp"
+                android:hint="Enter weight"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+                
+                 <TextView
+                  android:id="@+id/tv_willpaytoll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/et_wtons"
+                android:layout_below="@+id/et_wtons"
+                android:layout_marginTop="5dp"
+                android:text="Willingness to pay Toll"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+                
+                  
+                 <LinearLayout
+            android:id="@+id/ll_willpaytoll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_willpaytoll"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <RadioGroup
+                android:id="@+id/rg_wptoll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_category"
+                android:checkedButton="@+id/rb_wtollyes"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <RadioButton
+                    android:id="@+id/rb_wtollyes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/spn_vehtype"
+                    
+                    android:layout_toLeftOf="@+id/passenger"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:text="YES"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_wtollno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:layout_alignLeft="@+id/myRadioGroup"
+                    android:layout_toLeftOf="@+id/passenger"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:text="NO"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RadioGroup>
+        </LinearLayout>
 
             <Button
                 android:id="@+id/btn_save"
@@ -353,6 +494,14 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_dateview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txt_category"
+            android:layout_alignLeft="@+id/et_times"
+            android:layout_marginLeft="10dp"
+            android:text="datevbb" />
         
     </RelativeLayout>
 
