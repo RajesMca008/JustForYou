@@ -29,6 +29,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +51,7 @@ import android.widget.Toast;
 import com.tgs.adapter.CustomAdapter;
 import com.tgs.adapter.DatabaseHandler;
 import com.tgs.bean.SpinnerModel;
+import com.tgs.servey.db.PlacesDatabaseHandler;
 
 public class MyServey extends ActionBarActivity {
 	String[] goodsTypeArray ;
@@ -58,7 +61,9 @@ public class MyServey extends ActionBarActivity {
 	String[] goodsvehTypeArray ;
 	Button btn_save;
 	String str_adress="";
-	EditText et_origin,et_destination,et_times,et_tons,et_occupancy;
+	AutoCompleteTextView et_origin,et_destination;
+	EditText et_times,et_tons,et_occupancy;
+	
 	double latitude;
 	double longitude;
 	String toDay_DATE;
@@ -101,6 +106,7 @@ public class MyServey extends ActionBarActivity {
 
 	private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
 
+	 final PlacesDatabaseHandler dbObj = new PlacesDatabaseHandler(this);
 	
 	/* Photo album for this application */
 	private String getAlbumName() {
@@ -278,8 +284,8 @@ public class MyServey extends ActionBarActivity {
 		db_Handler=new DatabaseHandler(getApplicationContext());
  
 		txt_occupancy=(TextView)findViewById(R.id.txt_occupancy);
-		et_origin=(EditText)findViewById(R.id.et_origin);
-		et_destination=(EditText)findViewById(R.id.et_destination);
+		et_origin=(AutoCompleteTextView)findViewById(R.id.et_origin);
+		et_destination=(AutoCompleteTextView)findViewById(R.id.et_destination);
 		et_times=(EditText)findViewById(R.id.et_times);
 		tv_wtons=(TextView)findViewById(R.id.tv_wtons);
 		et_tons=(EditText)findViewById(R.id.et_wtons);
@@ -467,6 +473,83 @@ public class MyServey extends ActionBarActivity {
     	   Toast.makeText(MyServey.this, "Please turn on GPS", Toast.LENGTH_LONG).show();
        } 
 		
+       
+       // ORIGIN
+       et_origin.addTextChangedListener(new TextWatcher() {
+		
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
+       
+       et_destination.addTextChangedListener(new TextWatcher() {
+		
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+
+			 
+			dbObj.getDetails(s.toString());
+           /* j = 0;
+            
+            charsequence = obj.getDetails((new StringBuilder("SELECT town,district,state FROM india_master WHERE town LIKE '")).append(charsequence).append("%' LIMIT 10").toString());
+            if (charsequence.size() > 0)
+            {
+                String as[] = new String[charsequence.size()];
+                i = 0;
+                do
+                {
+                    if (i >= charsequence.size())
+                    {
+                        charsequence = new ArrayAdapter(getApplicationContext(), 0x7f030004, as);
+                        origin.setThreshold(0);
+                        origin.setAdapter(charsequence);
+                        ODSurvey.originLocation = " ";
+                        return;
+                    }
+                    List list = (List)charsequence.get(i);
+                    as[j] = (new StringBuilder(String.valueOf((String)list.get(0)))).append(",").append((String)list.get(1)).append(",").append((String)list.get(2)).toString();
+                    j++;
+                    i++;
+                } while (true);
+            } else
+            {
+                ODSurvey.originLocation = origin.getText().toString().trim();
+                Log.d("ORIGIN", ODSurvey.originLocation);
+                return;
+            }
+        }*/
+		
+			
+		}
+		
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
 	}
 	
 	public static boolean isIntentAvailable(Context context, String action) {

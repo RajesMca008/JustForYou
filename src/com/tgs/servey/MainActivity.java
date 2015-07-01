@@ -1,37 +1,24 @@
 package com.tgs.servey;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.util.ArrayList;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import au.com.bytecode.opencsv.CSVWriter;
 
 import com.tgs.adapter.DatabaseHandler;
+import com.tgs.servey.db.PlacesDatabaseHandler;
 
 public class MainActivity extends ActionBarActivity{
 
@@ -43,10 +30,12 @@ public class MainActivity extends ActionBarActivity{
 	TextView txt_noserveys;
 	GPSTracker gpsTracker;
 	DatabaseHandler db;
+	Context _mainContext=null;
+	final String Pref_name="user_pref";
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		
+		_mainContext=this;
 		btn_startservey=(Button) findViewById(R.id.btn_startservey);
 		btn_serveyreport=(Button)findViewById(R.id.btn_report);
 		txt_noserveys=(TextView)findViewById(R.id.txt_noserveys);
@@ -86,6 +75,52 @@ public class MainActivity extends ActionBarActivity{
 			}
 		});
 		
+		SharedPreferences preferences=getSharedPreferences(Pref_name,MODE_PRIVATE);
+		boolean isReady=preferences.getBoolean("IS_MASTER_READ", false);
+		
+		if(!isReady)
+		{
+		MyInserTask inserTask=new MyInserTask();
+		inserTask.execute();
+		}
+		 
+	}
+	
+	class MyInserTask extends AsyncTask<Void, Void, Void>
+	{
+		ProgressDialog progess=null;
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			progess=new ProgressDialog(_mainContext);
+			progess.show();
+			
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			PlacesDatabaseHandler databaseHandler=new PlacesDatabaseHandler(getApplicationContext());
+			databaseHandler.insertDefaultData();
+			System.out.println("TEST data inserted sucessssssss");
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			SharedPreferences preferences=getSharedPreferences(Pref_name,MODE_PRIVATE);
+			SharedPreferences.Editor edit=preferences.edit();
+			
+			edit.putBoolean("IS_MASTER_READ", true);
+			edit.commit();
+			 
+			
+			progess.dismiss();
+		}
 	}
 	
 	/*public void exportCSV(){
