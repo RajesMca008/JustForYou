@@ -36,11 +36,11 @@ public class LoginActivity extends ActionBarActivity {
 		mypref=getSharedPreferences("Credentials", 0);
 		str_pref_UserName=mypref.getString("UserName", "");
 		str_pref_Password=mypref.getString("Password", "");	
-		if(str_pref_UserName.equals(""))
+		/*if(str_pref_UserName.equals(""))
 			btn_Login.setText("Register");
 		else
 			btn_Login.setText("Login");
-		gpsTracker=new GPSTracker(LoginActivity.this);	
+		*/gpsTracker=new GPSTracker(LoginActivity.this);	
 		
 		btn_Login.setOnClickListener(new View.OnClickListener() {
 			

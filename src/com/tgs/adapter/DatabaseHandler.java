@@ -65,7 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ PAY_TOLL + " TEXT,"
 				+ LATITUDE_LONGITUDE + " TEXT,"
 				+ OCCUPANCY + " TEXT,"
-				+ CREATED_DATE + " TEXT"
+				+ CREATED_DATE + " DATE"
 				+ ")";
 
 		db.execSQL(CREATE_OFFLINE_DATA_TABLE);

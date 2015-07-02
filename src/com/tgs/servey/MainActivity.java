@@ -15,8 +15,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import android.app.ProgressDialog;
-import android.content.Context;
+import android.app.ProgressDialog;import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -64,8 +63,12 @@ public class MainActivity extends ActionBarActivity{
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setTitle("Home");
 		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.iconbg));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		String toDay_DATE= sdf.format(new Date());
+		
 		//exportCSV();
-		Cursor c=db.RetriveData("Select * from SERVEY_DATA");
+		Cursor c=db.RetriveData("Select * from SERVEY_DATA WHERE CREATED_DATE >='"+toDay_DATE+"_00:00:00'");
 		
 		if(c!=null){
 			txt_noserveys.setText("Number of serveys: "+c.getCount());
@@ -73,7 +76,7 @@ public class MainActivity extends ActionBarActivity{
 		}else{
 			txt_noserveys.setText("Number of serveys: 0");
 		}
-		
+		c.close();
 	
 		btn_startservey.setOnClickListener(new OnClickListener() {
 			
@@ -120,8 +123,11 @@ public class MainActivity extends ActionBarActivity{
             @Override
             public void onClick(View v) { //main code begins here
                 try {
+                	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    				String toDay_DATE= sdf.format(new Date());
+    				
                 	//  where player_id='"+TournamentMainFragment.loginPreferences.getString(Util.intent_userId, "")+"'");
-                    c = sqldb.rawQuery("select * from SERVEY_DATA", null);
+                    c = sqldb.rawQuery("select * from SERVEY_DATA WHERE CREATED_DATE >='"+toDay_DATE+"_00:00:00'", null);
                     int rowcount = 0;
                     int colcount = 0;
                     File sdCardDir = Environment.getExternalStorageDirectory();
@@ -271,8 +277,8 @@ public class MainActivity extends ActionBarActivity{
 	   ArrayList al=null;
 
 	   //File dbFile= new File(getDatabasePath("database_name").toString());
-	   File dbFile=getDatabasePath(DatabaseHandler.DATABASE_NAME);
-	   String yes= dbFile.getAbsolutePath();
+	   //File dbFile=getDatabasePath(DatabaseHandler.DATABASE_NAME);
+	   //String yes= dbFile.getAbsolutePath();
 
 	   
 	
