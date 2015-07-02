@@ -52,8 +52,8 @@ public class Servey_Report extends Activity{
 					sbean.setCREATED_DATE(c.getString(c.getColumnIndex(DatabaseHandler.CREATED_DATE)));
 					sbean.setDESTINATION(c.getString(c.getColumnIndex(DatabaseHandler.DESTINATION)));
 					sbean.setIMAGEPATH(c.getString(c.getColumnIndex(DatabaseHandler.IMAGEPATH)));
-					sbean.setLATITUDE(c.getString(c.getColumnIndex(DatabaseHandler.LATITUDE)));
-					sbean.setLONGITUDE(c.getString(c.getColumnIndex(DatabaseHandler.LONGITUDE)));
+					sbean.setLATITUDE(c.getString(c.getColumnIndex(DatabaseHandler.LATITUDE_LONGITUDE)));
+				//	sbean.setLONGITUDE(c.getString(c.getColumnIndex(DatabaseHandler.LONGITUDE)));
 					sbean.setMONTHLY_PASS(c.getString(c.getColumnIndex(DatabaseHandler.MONTHLY_PASS)));
 					sbean.setORIGIN(c.getString(c.getColumnIndex(DatabaseHandler.ORIGIN)));
 					sbean.setPAY_TOLL(c.getString(c.getColumnIndex(DatabaseHandler.DESTINATION)));
@@ -134,10 +134,10 @@ public class Servey_Report extends Activity{
 				tv_destination=(TextView)MyView.findViewById(R.id.txt_destnce);
 				tv_date=(TextView)MyView.findViewById(R.id.txt_datetime);
 				
-				tv_vehRegno.setText(""+ItemMyDiary.getVEH_REG_NO());
-				tv_destination.setText(""+ItemMyDiary.getDESTINATION());
-				tv_origin.setText(""+ItemMyDiary.getORIGIN());
-				tv_date.setText(""+ItemMyDiary.getCREATED_DATE());
+				tv_vehRegno.setText("Vehcle_Reg.No"+ItemMyDiary.getVEH_REG_NO());
+				tv_destination.setText("Destination"+ItemMyDiary.getDESTINATION());
+				tv_origin.setText("Origin"+ItemMyDiary.getORIGIN());
+				tv_date.setText("Date"+ItemMyDiary.getCREATED_DATE());
 			    
 			        
 			return MyView;

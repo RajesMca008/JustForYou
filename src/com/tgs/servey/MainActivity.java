@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -24,6 +26,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,10 +60,11 @@ public class MainActivity extends ActionBarActivity{
 		//exportCSV();
 		Cursor c=db.RetriveData("Select * from SERVEY_DATA");
 		
-		if(c.getCount()==0 || c==null){
-			txt_noserveys.setText("Number of serveys: 0");
-		}else{
+		if(c!=null){
 			txt_noserveys.setText("Number of serveys: "+c.getCount());
+			
+		}else{
+			txt_noserveys.setText("Number of serveys: 0");
 		}
 		
 	
@@ -97,6 +101,7 @@ public class MainActivity extends ActionBarActivity{
             @Override
             public void onClick(View v) { //main code begins here
                 try {
+                	//  where player_id='"+TournamentMainFragment.loginPreferences.getString(Util.intent_userId, "")+"'");
                     c = sqldb.rawQuery("select * from SERVEY_DATA", null);
                     int rowcount = 0;
                     int colcount = 0;
@@ -218,8 +223,14 @@ public class MainActivity extends ActionBarActivity{
 	     {
 	         exportDir.mkdirs();
 	     }  
+	     
+	     Date dNow = new Date( );
+	      SimpleDateFormat ft = 
+	      new SimpleDateFormat ("dd-MM-yyyy");
+	      Animation animBlink;
+		//  tv_date.setText(ft.format(dNow)+"-"+Integer.toString(level)+"%");
 	     String inFilePath = Environment.getExternalStorageDirectory().toString()+"/MyBackUp.csv";
-		    outFilePath = Environment.getExternalStorageDirectory().toString()+"/servey/Servey.xls";
+		    outFilePath = Environment.getExternalStorageDirectory().toString()+"/servey/"+"ft.format(dNow).xls";
 	   String thisLine;
 	   int count=0;
 

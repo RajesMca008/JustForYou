@@ -8,9 +8,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -82,6 +84,8 @@ public class MyServey extends ActionBarActivity {
 	private static final int ACTION_TAKE_PHOTO_B = 1;
 	private static final int ACTION_TAKE_PHOTO_S = 2;
 	private static final int ACTION_TAKE_VIDEO = 3;
+	
+	RadioGroup rg_goods_Passengers;
 
 	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
 	private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
@@ -312,7 +316,7 @@ public class MyServey extends ActionBarActivity {
 		rg_roundTrip=(RadioGroup)findViewById(R.id.rg_roundtrip);
 		rg_monthlypass=(RadioGroup)findViewById(R.id.rg_mpass);
 		rg_willpaytoll=(RadioGroup)findViewById(R.id.rg_wptoll);
-		
+		rg_goods_Passengers=(RadioGroup)findViewById(R.id.myRadioGroup);
 		txt_occupancy.setVisibility(View.GONE);
 		et_occupancy.setVisibility(View.GONE);
 		  registerReceiver(mbcr,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -407,6 +411,7 @@ public class MyServey extends ActionBarActivity {
 			       String veh_frq = spn_tripfreq.getSelectedItem().toString();
 			       System.out.println("veh reg no"+vehregno);
 			     
+			       int selected_vehType=rg_goods_Passengers.getCheckedRadioButtonId();
 			       int selected_roundtrip = rg_roundTrip.getCheckedRadioButtonId();
 			       int selected_monthlypass = rg_monthlypass.getCheckedRadioButtonId();
 			       int selected_paytoll = rg_willpaytoll.getCheckedRadioButtonId();
@@ -414,39 +419,80 @@ public class MyServey extends ActionBarActivity {
 			    RadioButton rb_sel_roundtrip = (RadioButton) findViewById(selected_roundtrip);
 			    RadioButton rb_sel_monthlypass = (RadioButton) findViewById(selected_monthlypass);
 			    RadioButton rb_sel_paytoll = (RadioButton) findViewById(selected_paytoll);
-			     
+			    RadioButton rb_sel_goods = (RadioButton) findViewById(selected_vehType);
+			       
 			   
 			       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
 					toDay_DATE= sdf.format(new Date());
 					
-					if(vehregno.length()!=0 && et_origin.getText().toString().length()!=0 && et_destination.getText().toString().length()!=0
-							&& veh_comd.length()!=0 && et_times.length()!=0 && veh_frq.length()!=0 
-							 && et_tons.getText().toString().length()!=0){
-			       
-			       ContentValues cv_values=new ContentValues();
-			       cv_values.put(DatabaseHandler.VEH_REG_NO,vehregno);
-			       cv_values.put(DatabaseHandler.ORIGIN,et_origin.getText().toString());
-			       cv_values.put(DatabaseHandler.DESTINATION,et_destination.getText().toString());
-			       cv_values.put(DatabaseHandler.COMMODITY,veh_comd);
-			       cv_values.put(DatabaseHandler.TRIP_TIME,et_times.getText().toString());
-			       cv_values.put(DatabaseHandler.TRIP_FREQ,veh_frq);
-			       cv_values.put(DatabaseHandler.RETURN_TRIP,rb_sel_roundtrip.getText().toString());
-			       cv_values.put(DatabaseHandler.MONTHLY_PASS,rb_sel_monthlypass.getText().toString());
-			       cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,et_tons.getText().toString());
-			       cv_values.put(DatabaseHandler.PAY_TOLL,rb_sel_paytoll.getText().toString());
-			       cv_values.put(DatabaseHandler.LATITUDE,latitude);
-			       cv_values.put(DatabaseHandler.LONGITUDE,longitude);
-			       cv_values.put(DatabaseHandler.IMAGEPATH,mCurrentPhotoPath);
-			       cv_values.put(DatabaseHandler.CREATED_DATE,toDay_DATE);
-			       db_Handler.insert(DatabaseHandler.TABLE_servey_Data, cv_values);
-			       
-			   //   finish();
-			       Intent i=new Intent(getApplicationContext(), MainActivity.class);
-			       startActivity(i);
-			       finish();
-			     }else{
-						Toast.makeText(getApplicationContext(), "Please enter all fields!", Toast.LENGTH_LONG).show();
-					}
+					if(rb_sel_goods.getText().toString().equalsIgnoreCase("\tGoods")){
+						if(vehregno.length()!=0 && et_origin.getText().toString().length()!=0 && et_destination.getText().toString().length()!=0
+								&& veh_comd.length()!=0 && et_times.length()!=0 && veh_frq.length()!=0 
+								 && et_tons.getText().toString().length()!=0 && mCurrentPhotoPath.length()!=0){
+				       
+				       ContentValues cv_values=new ContentValues();
+				       cv_values.put(DatabaseHandler.VEH_REG_NO,vehregno);
+				       cv_values.put(DatabaseHandler.ORIGIN,et_origin.getText().toString());
+				       cv_values.put(DatabaseHandler.DESTINATION,et_destination.getText().toString());
+				       cv_values.put(DatabaseHandler.COMMODITY,veh_comd);
+				       cv_values.put(DatabaseHandler.OCCUPANCY,"-NA-");
+				       cv_values.put(DatabaseHandler.TRIP_TIME,et_times.getText().toString());
+				       cv_values.put(DatabaseHandler.TRIP_FREQ,veh_frq);
+				       cv_values.put(DatabaseHandler.RETURN_TRIP,rb_sel_roundtrip.getText().toString());
+				       cv_values.put(DatabaseHandler.MONTHLY_PASS,rb_sel_monthlypass.getText().toString());
+				       cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,et_tons.getText().toString());
+				       cv_values.put(DatabaseHandler.PAY_TOLL,rb_sel_paytoll.getText().toString());
+				       cv_values.put(DatabaseHandler.LATITUDE_LONGITUDE,latitude+","+longitude);
+				     //  cv_values.put(DatabaseHandler.LONGITUDE,longitude);
+				       cv_values.put(DatabaseHandler.IMAGEPATH,mCurrentPhotoPath);
+				       cv_values.put(DatabaseHandler.CREATED_DATE,toDay_DATE);
+				       db_Handler.insert(DatabaseHandler.TABLE_servey_Data, cv_values);
+				       
+				   //   finish();
+				       Intent i=new Intent(getApplicationContext(), MainActivity.class);
+				       startActivity(i);
+				       finish();
+				       
+						Toast.makeText(getApplicationContext(), "Goods Data saved Successfully", Toast.LENGTH_LONG).show();
+						
+				     }else{
+							Toast.makeText(getApplicationContext(), "Please enter all fields!", Toast.LENGTH_LONG).show();
+						}
+		}else if(rb_sel_goods.getText().toString().equalsIgnoreCase("\tPassenger")){
+			if(vehregno.length()!=0 && et_origin.getText().toString().length()!=0 && et_destination.getText().toString().length()!=0
+					&& veh_comd.length()!=0 && et_times.length()!=0 && veh_frq.length()!=0 && et_occupancy.getText().toString().length()!=0
+					&& mCurrentPhotoPath.length()!=0){
+	       
+	       ContentValues cv_values=new ContentValues();
+	       cv_values.put(DatabaseHandler.VEH_REG_NO,vehregno);
+	       cv_values.put(DatabaseHandler.ORIGIN,et_origin.getText().toString());
+	       cv_values.put(DatabaseHandler.DESTINATION,et_destination.getText().toString());
+	       cv_values.put(DatabaseHandler.OCCUPANCY,et_occupancy.getText().toString());
+	       cv_values.put(DatabaseHandler.COMMODITY,veh_comd);
+	       cv_values.put(DatabaseHandler.TRIP_TIME,et_times.getText().toString());
+	       cv_values.put(DatabaseHandler.TRIP_FREQ,veh_frq);
+	       cv_values.put(DatabaseHandler.RETURN_TRIP,rb_sel_roundtrip.getText().toString());
+	       cv_values.put(DatabaseHandler.MONTHLY_PASS,rb_sel_monthlypass.getText().toString());
+	       cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,"-NA-");
+	       cv_values.put(DatabaseHandler.PAY_TOLL,rb_sel_paytoll.getText().toString());
+	       cv_values.put(DatabaseHandler.LATITUDE_LONGITUDE,latitude);
+	    //   cv_values.put(DatabaseHandler.LONGITUDE,longitude);
+	       cv_values.put(DatabaseHandler.IMAGEPATH,mCurrentPhotoPath);
+	       cv_values.put(DatabaseHandler.CREATED_DATE,toDay_DATE);
+	       db_Handler.insert(DatabaseHandler.TABLE_servey_Data, cv_values);
+	       
+	   //   finish();
+	       Intent i=new Intent(getApplicationContext(), MainActivity.class);
+	       startActivity(i);
+	       finish();
+			Toast.makeText(getApplicationContext(), "Passengers Data saved Successfully", Toast.LENGTH_LONG).show();
+			
+	     }else{
+				Toast.makeText(getApplicationContext(), "Please enter all fields!", Toast.LENGTH_LONG).show();
+			}
+}
+					
+					
 			}  
 		});
 
@@ -568,8 +614,40 @@ public class MyServey extends ActionBarActivity {
 			// TODO Auto-generated method stub
 			super.onBackPressed();
 			
-			Intent i=new Intent(getApplicationContext(),MainActivity.class);
-			startActivity(i);
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					getApplicationContext());
+	 
+				// set title
+				alertDialogBuilder.setTitle("Message");
+	 
+				// set dialog message
+				alertDialogBuilder
+					.setMessage("Do you want to Exit")
+					.setCancelable(false)
+					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, close
+							// current activity
+							Intent i=new Intent(getApplicationContext(),MainActivity.class);
+							startActivity(i);
+							MyServey.this.finish();
+						}
+					  })
+					.setNegativeButton("No",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, just close
+							// the dialog box and do nothing
+							dialog.cancel();
+						}
+					});
+	 
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
+	 
+					// show it
+					alertDialog.show();
+			
+		
 		}
 	 
 		  private BroadcastReceiver mbcr=new BroadcastReceiver()
