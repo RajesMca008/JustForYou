@@ -16,7 +16,9 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -24,6 +26,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -33,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tgs.adapter.DatabaseHandler;
+import com.tgs.servey.db.PlacesDatabaseHandler;
 
 public class MainActivity extends ActionBarActivity{
 
@@ -45,10 +49,13 @@ public class MainActivity extends ActionBarActivity{
 	GPSTracker gpsTracker;
 	DatabaseHandler db;
 	 String outFilePath;
+	 final String prf_name="user_pref";
+	 private Context _mainContext;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		
+		_mainContext=this;
 		btn_startservey=(Button) findViewById(R.id.btn_startservey);
 		btn_serveyreport=(Button)findViewById(R.id.btn_report);
 		btn_export=(Button)findViewById(R.id.btn_export);
@@ -91,6 +98,18 @@ public class MainActivity extends ActionBarActivity{
 		});
 		
 		
+		//Master data adding.
+				SharedPreferences preferences=getSharedPreferences(prf_name, MODE_PRIVATE);
+				boolean isMasterCreated =preferences.getBoolean("IS_MASTER_DB_CREATED", false);
+				
+				if(!isMasterCreated)
+				{
+					MyInserTask inserTask=new MyInserTask();
+					 inserTask.execute();
+				}
+				else{
+					Log.d(getClass().getName(), "Master data created!");
+				}
 		
 		
 		 
@@ -161,6 +180,45 @@ public class MainActivity extends ActionBarActivity{
 		
 	}
 	
+	
+
+	class MyInserTask extends AsyncTask<Void, Void, Void>
+ 	{
+ 		ProgressDialog progess=null;
+ 		@Override
+ 		protected void onPreExecute() {
+ 			// TODO Auto-generated method stub
+ 			super.onPreExecute();
+ 			progess=new ProgressDialog(_mainContext);
+ 			progess.show();
+ 			
+ 		}
+ 
+ 		@Override
+ 		protected Void doInBackground(Void... params) {
+ 			// TODO Auto-generated method stub
+ 			PlacesDatabaseHandler databaseHandler=new PlacesDatabaseHandler(getApplicationContext());
+ 			databaseHandler.insertDefaultData();
+ 			System.out.println("Master data ready!");
+ 			return null;
+ 		}
+ 		
+ 		@Override
+ 		protected void onPostExecute(Void result) {
+ 			// TODO Auto-generated method stub
+ 			super.onPostExecute(result);
+ 			
+ 			SharedPreferences preferences=getSharedPreferences(prf_name,MODE_PRIVATE);
+ 			SharedPreferences.Editor edit=preferences.edit();
+ 			
+ 			edit.putBoolean("IS_MASTER_DB_CREATED", true);
+ 			edit.commit();
+ 			 
+ 			
+ 			progess.dismiss();
+ 		}
+ 	}
+	
 	/*public void exportCSV(){
 		 File dbFile=getDatabasePath("Servey.db");
 		 
@@ -230,7 +288,7 @@ public class MainActivity extends ActionBarActivity{
 	      Animation animBlink;
 		//  tv_date.setText(ft.format(dNow)+"-"+Integer.toString(level)+"%");
 	     String inFilePath = Environment.getExternalStorageDirectory().toString()+"/MyBackUp.csv";
-		    outFilePath = Environment.getExternalStorageDirectory().toString()+"/servey/"+"ft.format(dNow).xls";
+		    outFilePath = Environment.getExternalStorageDirectory().toString()+"/servey/"+ft.format(dNow)+".xls";
 	   String thisLine;
 	   int count=0;
 

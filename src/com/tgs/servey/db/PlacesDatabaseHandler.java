@@ -67,11 +67,12 @@ public class PlacesDatabaseHandler extends SQLiteOpenHelper
      public ArrayList getDetails(String s)
     {
         Cursor cursor;
-        ArrayList arraylist;
-        int i;
+        ArrayList arraylist = null;
+       
+        System.out.println("TEST req :"+s);
         arraylist = new ArrayList();
         SQLiteDatabase sqlitedatabase;
-        int j;
+        
         try
         {
             sqlitedatabase = getWritableDatabase();
@@ -80,7 +81,7 @@ public class PlacesDatabaseHandler extends SQLiteOpenHelper
         catch (Exception e)
         {
             Log.d("Exception", e.getMessage());
-            return arraylist;
+            return null;
         }
         cursor = null;
         if (sqlitedatabase == null)
@@ -93,17 +94,32 @@ public class PlacesDatabaseHandler extends SQLiteOpenHelper
         	return null;
         }
         
-          j=cursor.getColumnCount();
-        		
+        System.out.println("TEST place cound:"+cursor.getCount());
+        
+        if(cursor.getCount()>0)
+        {
+        
+        		int j=cursor.getColumnCount();
           cursor.moveToFirst();
            do {
 			
-        	   cursor.moveToNext();
-        	   System.out.println("TEST place"+cursor.getString(0));
-		} while (cursor.isLast());
+        	   String name="";
+        	  for(int i=0;i<j;i++)
+        	  {
+        		  name=name+cursor.getString(i)+",";
+        	  }
+        	    
+        	   arraylist.add(name);
+        	   
+		} while ( cursor.moveToNext()); 
  
-           cursor.close();
-           sqlitedatabase.close();
+          
+        } 
+        if(cursor!=null)
+            cursor.close();
+        
+            if(sqlitedatabase!=null)
+            sqlitedatabase.close();
            
            return arraylist;
     } 

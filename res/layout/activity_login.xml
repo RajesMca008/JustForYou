@@ -2,16 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbg" 
+    android:background="@drawable/background2" 
    >
 
     <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center_vertical" 
+        android:gravity="center_vertical" android:background="@drawable/shadow_layer"
+        android:layout_margin="10dp"
+        android:padding="10dp"
        >
 
         <TextView
@@ -65,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/et_pwd"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_alignParentRight="true"
             android:background="@color/sing_in_button"
             android:textColor="@color/white"

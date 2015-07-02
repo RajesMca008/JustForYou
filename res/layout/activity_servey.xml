@@ -1,9 +1,27 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/sing_in_button" >
+   <TextView
+        android:id="@+id/tv_dateview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentTop="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Battery info"
+           android:paddingRight="2dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+<ScrollView 
+    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:background="@color/black"
+    android:layout_below="@id/tv_dateview"
     android:fitsSystemWindows="true" >
 
     <RelativeLayout
@@ -108,6 +126,7 @@
             android:layout_marginTop="5dp"
             android:ems="10"
              android:textColor="@color/white"
+             android:maxLength="12"
             android:hint="Reg.No: TS 15 EC 2695" >
 
             
@@ -136,7 +155,7 @@
             android:layout_below="@+id/image_content_layout"
             android:contentDescription="Capture Image"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/default_vech"
+            android:src="@drawable/default_vech"
             android:visibility="visible" />
         
         
@@ -159,6 +178,8 @@
             android:hint="Enter Occupancy"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:inputType="number"
+            android:maxLength="4"
             android:textStyle="bold" />
 
         <TextView
@@ -172,7 +193,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/et_origin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -196,7 +217,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/et_destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -420,6 +441,8 @@
                 android:hint="Enter weight"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                android:inputType="number"
+                android:maxLength="8"
                 android:textStyle="bold" />
                 
                  <TextView
@@ -494,15 +517,16 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <TextView
+       <!--  <TextView
             android:id="@+id/tv_dateview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/txt_category"
             android:layout_alignLeft="@+id/et_times"
             android:layout_marginLeft="10dp"
-            android:text="datevbb" />
+            android:text="datevbb" /> -->
         
     </RelativeLayout>
 
 </ScrollView>
+</RelativeLayout>

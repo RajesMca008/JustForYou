@@ -108,7 +108,7 @@ public class Servey_Report extends Activity{
 			
 			View MyView = arg1;
 			//	final View MyView1 = convertView;
-				final int mypos = arg0;
+				 
 				try {
 					ItemMyDiary = (ServeyBean) getItem(arg0);
 

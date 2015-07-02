@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"  >
+
+    <LinearLayout  android:layout_width="match_parent"
+        android:layout_height="100dp" android:weightSum="1" android:orientation="horizontal">
+        
+          <LinearLayout  android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="0.7" android:layout_margin="2dp" android:background="@drawable/image10">
+         <TextView
+        android:id="@+id/vehregno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="bottom"
+        android:text="vgvgvg"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+        
+        </LinearLayout>
+          <RelativeLayout  android:layout_width="match_parent" android:layout_margin="2dp"
+        android:layout_height="match_parent" android:layout_weight="0.3">
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Report" />
+        </RelativeLayout>
+         </LinearLayout>
+    
+    <!-- <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="17dp"
+        android:text="Orgin" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:text="TextView" />
+ -->
+</RelativeLayout>
