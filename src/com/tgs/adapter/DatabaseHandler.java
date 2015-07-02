@@ -19,19 +19,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //	Date & Time	Vehicle Type	Vehicle Reg No.	Origin	Destination	Commodity Type	Trip Length	Trip Time	Trip Frequency	Return Trip on same day	Monthly pass	Weight in tons	Willngness to Pay Toll (Y/N)
 
 	public static final String TABLE_servey_Data = "SERVEY_DATA";
-	public static final String ID="_ID";
-	public static final String VEH_REG_NO="VEH_REG_NO";
-	public static final String ORIGIN="VEH_ORIGIN";
-	public static final String DESTINATION="VEH_DESTINATION";
-	public static final String COMMODITY="VEH_COMMODITY";
-	public static final String TRIP_LENGTH="VEH_TRIP_LENGTH";
-	public static final String TRIP_TIME="VEH_TRIP_TIME";
-	public static final String TRIP_FREQ="VEH_TRIP_FREQ";
-	public static final String RETURN_TRIP="VEH_RETURN_TRIP";
-	public static final String MONTHLY_PASS="VEH_MONTHLY_PASS";
+	public static final String ID="S_NO";
+	public static final String VEH_REG_NO="Vehicle_Reg_No";
+	public static final String ORIGIN="Vehicle_ORIGIN";
+	public static final String OCCUPANCY="Vehicle_OCCUPANCY";
+	public static final String DESTINATION="Vehicle_DESTINATION";
+	public static final String COMMODITY="Vehicle_COMMODITY";
+	public static final String TRIP_LENGTH="Vehicle_TRIP_LENGTH";
+	public static final String TRIP_TIME="Vehicle_TRIP_TIME";
+	public static final String TRIP_FREQ="Vehicle_TRIP_FREQ";
+	public static final String RETURN_TRIP="Vehicle_RETURN_TRIP";
+	public static final String MONTHLY_PASS="Vehicle_MONTHLY_PASS";
 	public static final String WEIGHT_IN_TONS="WEIGHT_TONS";
 	public static final String PAY_TOLL="PAY_TOLL";
-	public static final String LATITUDE="LATITUDE";
+	public static final String LATITUDE_LONGITUDE="LATITUDE_LONGITUDE";
 	public static final String LONGITUDE="LONGITUDE";
 	public static final String IMAGEPATH="IMAGEPATH";
 	public static final String CREATED_DATE="CREATED_DATE";
@@ -62,8 +63,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ WEIGHT_IN_TONS + " TEXT,"
 				+ IMAGEPATH + " TEXT,"
 				+ PAY_TOLL + " TEXT,"
-				+ LATITUDE + " TEXT,"
-				+ LONGITUDE + " TEXT,"
+				+ LATITUDE_LONGITUDE + " TEXT,"
+				+ OCCUPANCY + " TEXT,"
 				+ CREATED_DATE + " TEXT"
 				+ ")";
 
