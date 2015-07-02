@@ -1,28 +1,39 @@
 package com.tgs.servey;
 
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.util.ArrayList;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tgs.adapter.DatabaseHandler;
-import com.tgs.servey.db.PlacesDatabaseHandler;
 
 public class MainActivity extends ActionBarActivity{
 
-	Button btn_startservey,btn_serveyreport;
+	Button btn_startservey,btn_serveyreport,btn_export;
 	
 	
 	EditText et_UserName=null;
@@ -30,14 +41,14 @@ public class MainActivity extends ActionBarActivity{
 	TextView txt_noserveys;
 	GPSTracker gpsTracker;
 	DatabaseHandler db;
-	Context _mainContext=null;
-	final String Pref_name="user_pref";
+	 String outFilePath;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		_mainContext=this;
+		
 		btn_startservey=(Button) findViewById(R.id.btn_startservey);
 		btn_serveyreport=(Button)findViewById(R.id.btn_report);
+		btn_export=(Button)findViewById(R.id.btn_export);
 		txt_noserveys=(TextView)findViewById(R.id.txt_noserveys);
 		db=new DatabaseHandler(getApplicationContext());
 		final ActionBar actionBar = getSupportActionBar();
@@ -75,52 +86,74 @@ public class MainActivity extends ActionBarActivity{
 			}
 		});
 		
-		SharedPreferences preferences=getSharedPreferences(Pref_name,MODE_PRIVATE);
-		boolean isReady=preferences.getBoolean("IS_MASTER_READ", false);
 		
-		if(!isReady)
-		{
-		MyInserTask inserTask=new MyInserTask();
-		inserTask.execute();
-		}
+		
+		
 		 
-	}
-	
-	class MyInserTask extends AsyncTask<Void, Void, Void>
-	{
-		ProgressDialog progess=null;
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			super.onPreExecute();
-			progess=new ProgressDialog(_mainContext);
-			progess.show();
-			
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			PlacesDatabaseHandler databaseHandler=new PlacesDatabaseHandler(getApplicationContext());
-			databaseHandler.insertDefaultData();
-			System.out.println("TEST data inserted sucessssssss");
-			return null;
-		}
+		btn_export.setOnClickListener(new View.OnClickListener() {
+            SQLiteDatabase sqldb = db.getReadableDatabase(); //My Database class
+            Cursor c = null;
+ 
+            @Override
+            public void onClick(View v) { //main code begins here
+                try {
+                    c = sqldb.rawQuery("select * from SERVEY_DATA", null);
+                    int rowcount = 0;
+                    int colcount = 0;
+                    File sdCardDir = Environment.getExternalStorageDirectory();
+                    String filename = "MyBackUp.csv";
+                                        // the name of the file to export with
+                    File saveFile = new File(sdCardDir, filename);
+                    FileWriter fw = new FileWriter(saveFile);
+ 
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    rowcount = c.getCount();
+                    colcount = c.getColumnCount();
+                    if (rowcount > 0) {
+                        c.moveToFirst();
+ 
+                        for (int i = 0; i < colcount; i++) {
+                            if (i != colcount - 1) {
+ 
+                                bw.write(c.getColumnName(i) + ",");
+ 
+                            } else {
+ 
+                                bw.write(c.getColumnName(i));
+ 
+                            }
+                        }
+                        bw.newLine();
+ 
+                        for (int i = 0; i < rowcount; i++) {
+                            c.moveToPosition(i);
+ 
+                            for (int j = 0; j < colcount; j++) {
+                                if (j != colcount - 1)
+                                    bw.write(c.getString(j) + ",");
+                                else
+                                    bw.write(c.getString(j));
+                            }
+                            bw.newLine();
+                        }
+                        bw.flush();
+                     //   infotext.setText("Exported Successfully.");
+                        
+                        new CSVToExcelConverter().execute();
+                    }
+                } catch (Exception ex) {
+                    if (sqldb.isOpen()) {
+                        sqldb.close();
+                   //     infotext.setText(ex.getMessage().toString());
+                    }
+ 
+                } finally {
+ 
+                }
+ 
+            }
+        });
 		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			
-			SharedPreferences preferences=getSharedPreferences(Pref_name,MODE_PRIVATE);
-			SharedPreferences.Editor edit=preferences.edit();
-			
-			edit.putBoolean("IS_MASTER_READ", true);
-			edit.commit();
-			 
-			
-			progess.dismiss();
-		}
 	}
 	
 	/*public void exportCSV(){
@@ -159,7 +192,7 @@ public class MainActivity extends ActionBarActivity{
 	     }
 	 
 	}*/
-	/*public class CSVToExcelConverter extends AsyncTask<String, Void, Boolean> {
+	public class CSVToExcelConverter extends AsyncTask<String, Void, Boolean> {
 
 
 	private final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
@@ -178,8 +211,15 @@ public class MainActivity extends ActionBarActivity{
 	   File dbFile=getDatabasePath(DatabaseHandler.DATABASE_NAME);
 	   String yes= dbFile.getAbsolutePath();
 
-	   String inFilePath = Environment.getExternalStorageDirectory().toString()+"/contacts.csv";
-	   String outFilePath = Environment.getExternalStorageDirectory().toString()+"/contacts2.xls";
+	   
+	
+	   File exportDir = new File(Environment.getExternalStorageDirectory(), "/servey");        
+	     if (!exportDir.exists()) 
+	     {
+	         exportDir.mkdirs();
+	     }  
+	     String inFilePath = Environment.getExternalStorageDirectory().toString()+"/MyBackUp.csv";
+		    outFilePath = Environment.getExternalStorageDirectory().toString()+"/servey/Servey.xls";
 	   String thisLine;
 	   int count=0;
 
@@ -217,17 +257,17 @@ public class MainActivity extends ActionBarActivity{
 	   HSSFCell cell = row.createCell((short) p);
 	   String data = ardata.get(p).toString();
 	   if(data.startsWith("=")){
-	   cell.setCellType(Cell.CELL_TYPE_STRING);
+	   cell.setCellType(cell.CELL_TYPE_STRING);
 	   data=data.replaceAll("\"", "");
 	   data=data.replaceAll("=", "");
 	   cell.setCellValue(data);
 	   }else if(data.startsWith("\"")){
 	   data=data.replaceAll("\"", "");
-	   cell.setCellType(Cell.CELL_TYPE_STRING);
+	   cell.setCellType(cell.CELL_TYPE_STRING);
 	   cell.setCellValue(data);
 	   }else{
 	   data=data.replaceAll("\"", "");
-	   cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+	   cell.setCellType(cell.CELL_TYPE_NUMERIC);
 	   cell.setCellValue(data);
 	   }
 	  
@@ -260,7 +300,7 @@ public class MainActivity extends ActionBarActivity{
 
 	   {
 
-	       Toast.makeText(MainActivity.this, "file is built!", Toast.LENGTH_LONG).show();
+	       Toast.makeText(MainActivity.this, "File exported successfully :"+outFilePath, Toast.LENGTH_LONG).show();
 
 	   }
 
@@ -268,13 +308,13 @@ public class MainActivity extends ActionBarActivity{
 
 	   {
 
-	       Toast.makeText(MainActivity.this, "file fail to build", Toast.LENGTH_SHORT).show();
+	       Toast.makeText(MainActivity.this, "File export failed", Toast.LENGTH_SHORT).show();
 
 	   }
 
 	}
 
 
-	}*/
+	}
 
 }
