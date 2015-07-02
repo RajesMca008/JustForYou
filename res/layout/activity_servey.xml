@@ -131,7 +131,7 @@
         
         <ImageView
             android:id="@+id/catute_image"
-            android:layout_width="150dp"
+            android:layout_width="180dp"
             android:layout_height="150dp"
             android:layout_below="@+id/image_content_layout"
             android:contentDescription="Capture Image"
