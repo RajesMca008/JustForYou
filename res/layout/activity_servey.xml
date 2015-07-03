@@ -2,531 +2,558 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/sing_in_button" >
-   <TextView
+    android:background="@drawable/background2" >
+
+    <TextView
         android:id="@+id/tv_dateview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:layout_alignParentRight="true"
-           android:layout_alignParentTop="true"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:text="Battery info"
-           android:paddingRight="2dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/app_bg_color"
+        android:ellipsize="end"
+        android:gravity="right"
+        android:maxLines="1"
+        android:padding="2dp"
+        android:text="Battery info" />
 
-<ScrollView 
-    
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:background="@color/black"
-    android:layout_below="@id/tv_dateview"
-    android:fitsSystemWindows="true" >
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-         >
+        android:layout_below="@id/tv_dateview"
+        android:alpha="0.8"
+        android:background="@color/app_bg_color"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true" >
 
-         <TextView
-            android:id="@+id/txt_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="15dp"
-            android:text="Select Category"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
-         
-        <RadioGroup
-            android:id="@+id/myRadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_category"
-            android:layout_marginTop="8dp"
-             
-            android:checkedButton="@+id/goods"
-            android:orientation="horizontal"
-            android:weightSum="1" >
-
-            <RadioButton
-                android:id="@+id/goods"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/spn_vehtype"
-                android:layout_alignLeft="@id/myRadioGroup"
-                android:layout_toLeftOf="@+id/passenger"
-                android:layout_weight="0.5"
-                android:text="\tGoods"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/passengers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/spn_vehtype"
-                android:layout_alignLeft="@id/myRadioGroup"
-                android:layout_toLeftOf="@+id/passenger"
-                android:layout_weight="0.5"
-                android:text="\tPassenger"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </RadioGroup>
-        
-         <View  android:layout_margin="3dp" android:layout_below="@+id/myRadioGroup" android:layout_width="match_parent" android:layout_height="0.3dp" android:background="@color/white" android:id="@+id/view1"/>
-      
-
-         <TextView
-            android:id="@+id/txt_vehtype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/view1"
-             android:layout_alignParentLeft="true"
-            android:text="Select Vehicle Type:"
-             
-           android:layout_marginTop="3dp"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-         
-       
-        <Spinner
-            android:id="@+id/spn_vehtype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             
-            android:layout_below="@+id/txt_vehtype"
-             android:textColor="@color/white"
-            android:layout_marginTop="5dp" />
-
-        
-         
-
-        <TextView
-            android:id="@+id/txt_vehregno"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/spn_vehtype"
-            android:layout_below="@+id/spn_vehtype"
-             
-            android:layout_marginTop="20dp"
-            android:text="Enter Vehicle Reg.No:"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txt_vehregno"
-            android:layout_below="@+id/txt_vehregno"
-            android:layout_marginTop="5dp"
-            android:ems="10"
-             android:textColor="@color/white"
-             android:maxLength="12"
-            android:hint="Reg.No: TS 15 EC 2695" >
-
-            
-        </AutoCompleteTextView>
-
-        <LinearLayout android:id="@+id/image_content_layout"  android:layout_below="@id/autoCompleteTextView1" android:layout_width="match_parent" android:layout_height="45dp" android:background="@color/theme_color">
-           
-            <ImageView android:layout_marginLeft="5dp"   android:layout_width="wrap_content" android:layout_gravity="center_vertical" android:layout_height="wrap_content"  android:background="@android:drawable/ic_menu_camera" />
-             <TextView
-            android:id="@+id/btn_camera"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/txt_vehregno"
-            android:layout_toRightOf="@+id/txt_category"
-           android:background="@color/theme_color"
-           android:gravity="center_vertical" android:layout_marginLeft="5dp"
-           android:textSize="20dp"
-            android:text="Capture RegNo." />
-        </LinearLayout>
-       
-        
-        <ImageView
-            android:id="@+id/catute_image"
-            android:layout_width="180dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/image_content_layout"
-            android:contentDescription="Capture Image"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/default_vech"
-            android:visibility="visible" />
-        
-        
-          <TextView
-            android:id="@+id/txt_occupancy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/catute_image"
-            android:layout_marginTop="5dp"
-            android:text="Occupancy"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-            <EditText
-            android:id="@+id/et_occupancy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_occupancy"
-            android:layout_marginTop="5dp"
-            android:hint="Enter Occupancy"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:inputType="number"
-            android:maxLength="4"
-            android:textStyle="bold" />
+            android:layout_margin="5dp" >
 
-        <TextView
-            android:id="@+id/txt_origin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_occupancy"
-            android:layout_marginTop="5dp"
-            android:text="Enter Origin:"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/et_origin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txt_origin"
-            android:layout_below="@+id/txt_origin"
-            android:layout_marginTop="5dp"
-            android:ems="10"
-            android:hint="Enter Origin"
-            android:inputType="text"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/txt_destination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/et_origin"
-            android:layout_below="@+id/et_origin"
-            android:layout_marginTop="5dp"
-            android:text="Enter Destination:"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/et_destination"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txt_destination"
-            android:layout_below="@+id/txt_destination"
-            android:layout_marginTop="5dp"
-            android:ems="10"
-             android:textColor="@color/white"
-            android:hint="Enter Destination"
-            android:inputType="text" />
-
-        <TextView
-            android:id="@+id/txt_trip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/et_destination"
-            android:layout_below="@+id/et_destination"
-            android:layout_marginTop="5dp"
-            android:text="Select Trip Frequency:"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/spn_tripfrq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txt_trip"
-             android:textColor="@color/white"
-            android:layout_alignRight="@+id/txt_destination"
-            android:layout_below="@+id/txt_trip" />
-
-        <EditText
-            android:id="@+id/et_times"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/spn_tripfrq"
-            android:layout_alignTop="@+id/spn_tripfrq"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/spn_tripfrq"
-            android:ems="10"
-             android:textColor="@color/white"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/txt_times"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/et_times"
-            android:layout_alignBottom="@+id/et_times"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/et_times"
-            android:text="Times:"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_r_trip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/spn_tripfrq"
-            android:layout_below="@+id/spn_tripfrq"
-            android:layout_marginTop="5dp"
-            android:text="Return Trip same day:"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/ll_roundtrip"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_r_trip"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal" >
+            <TextView
+                android:id="@+id/txt_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:text="Select Category"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
 
             <RadioGroup
-                android:id="@+id/rg_roundtrip"
+                android:id="@+id/myRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_category"
-                android:checkedButton="@+id/rb_yes"
+                android:layout_marginTop="8dp"
+                android:checkedButton="@+id/goods"
                 android:orientation="horizontal"
                 android:weightSum="1" >
 
                 <RadioButton
-                    android:id="@+id/rb_yes"
+                    android:id="@+id/goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/spn_vehtype"
-                    
+                    android:layout_alignLeft="@id/myRadioGroup"
                     android:layout_toLeftOf="@+id/passenger"
                     android:layout_weight="0.5"
-                    
-                    android:text="\tYES"
+                    android:text="\tGoods"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <RadioButton
-                    android:id="@+id/rb_no"
+                    android:id="@+id/passengers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     
-                    android:layout_alignLeft="@+id/myRadioGroup"
+                    android:layout_above="@+id/spn_vehtype"
+                    android:layout_alignLeft="@id/myRadioGroup"
                     android:layout_toLeftOf="@+id/passenger"
                     android:layout_weight="0.5"
-                    android:text="\tNO"
+                    android:text="\tPassenger"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </RadioGroup>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_roundtrip"
-            
-            android:layout_marginTop="5dp"
-            android:orientation="vertical" >
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_below="@+id/myRadioGroup"
+                android:layout_margin="3dp"
+                android:background="@color/white" />
 
             <TextView
-                android:id="@+id/tv_commoditytype"
+                android:id="@+id/txt_vehtype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/spn_tripfrq"
-                android:layout_below="@+id/spn_tripfrq"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/view1"
+                android:layout_marginTop="3dp"
+                android:text="Select Vehicle Type:"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spn_vehtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_vehtype"
                 android:layout_marginTop="5dp"
-                android:text="Commodity Type"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txt_vehregno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/spn_vehtype"
+                android:layout_below="@+id/spn_vehtype"
+                android:layout_marginTop="20dp"
+                android:text="Enter Vehicle Reg.No:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_vehregno"
+                android:layout_below="@+id/txt_vehregno"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="Reg.No: TS 15 EC 2695"
+                android:maxLength="12"
+                android:textColor="@color/white" >
+            </AutoCompleteTextView>
+
+            <LinearLayout
+                android:id="@+id/image_content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/autoCompleteTextView1"
+                android:background="@color/theme_color" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:drawable/ic_menu_camera" />
+
+                <TextView
+                    android:id="@+id/btn_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/txt_vehregno"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/txt_category"
+                    android:background="@color/theme_color"
+                    android:gravity="center_vertical"
+                    android:text="Capture RegNo."
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/catute_image"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/image_content_layout"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="Capture Image"
+                android:src="@drawable/default_vech"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/txt_occupancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/catute_image"
+                android:layout_marginTop="5dp"
+                android:text="Occupancy"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_occupancy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_occupancy"
+                android:layout_marginTop="5dp"
+                android:hint="Enter Occupancy"
+                android:inputType="number"
+                android:maxLength="4"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_origin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_occupancy"
+                android:layout_marginTop="5dp"
+                android:text="Enter Origin:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <AutoCompleteTextView
+                android:id="@+id/et_origin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_origin"
+                android:layout_below="@+id/txt_origin"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="Enter Origin"
+                android:inputType="text"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txt_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/et_origin"
+                android:layout_below="@+id/et_origin"
+                android:layout_marginTop="5dp"
+                android:text="Enter Destination:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <AutoCompleteTextView
+                android:id="@+id/et_destination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_destination"
+                android:layout_below="@+id/txt_destination"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="Enter Destination"
+                android:inputType="text"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txt_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/et_destination"
+                android:layout_below="@+id/et_destination"
+                android:layout_marginTop="5dp"
+                android:text="Select Trip Frequency:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/spn_commodity"
-                android:layout_width="match_parent"
+                android:id="@+id/spn_tripfrq"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/txt_trip"
-                 android:textColor="@color/white"
-                android:layout_alignRight="@+id/et_destination"
-                android:layout_below="@id/txt_trip" />
+                android:layout_alignRight="@+id/txt_destination"
+                android:layout_below="@+id/txt_trip"
+                android:textColor="@color/white" />
 
-            <TextView
+            <EditText
+                android:id="@+id/et_times"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/spn_tripfrq"
-                android:layout_below="@+id/spn_tripfrq"
-                android:layout_marginTop="5dp"
-                android:text="Monthly pass"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-             <LinearLayout
-            android:id="@+id/ll_mpass"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_r_trip"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal" >
-
-            <RadioGroup
-                android:id="@+id/rg_mpass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_category"
-                android:checkedButton="@+id/rb_mpassyes"
-                android:orientation="horizontal"
-                android:weightSum="1" >
-
-                <RadioButton
-                    android:id="@+id/rb_mpassyes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/spn_vehtype"
-                    
-                    android:layout_toLeftOf="@+id/passenger"
-                    android:layout_weight="0.5"
-                    android:paddingLeft="5dp"
-                    android:text="YES"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_mpassno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                     
-                    android:layout_alignLeft="@+id/myRadioGroup"
-                    android:layout_toLeftOf="@+id/passenger"
-                    android:layout_weight="0.5"
-                    android:paddingLeft="5dp"
-                    android:text="NO"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-            </RadioGroup>
-        </LinearLayout>
-        
-             
-              <TextView
-                  android:id="@+id/tv_wtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/spn_tripfrq"
-                android:layout_below="@+id/spn_tripfrq"
-                android:layout_marginTop="5dp"
-                android:text="Weight in tons"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-              
-                <EditText
-                    android:id="@+id/et_wtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_wtons"
-                android:layout_below="@+id/tv_wtons"
-                android:layout_marginTop="5dp"
-                android:hint="Enter weight"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:inputType="number"
-                android:maxLength="8"
-                android:textStyle="bold" />
-                
-                 <TextView
-                  android:id="@+id/tv_willpaytoll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/et_wtons"
-                android:layout_below="@+id/et_wtons"
-                android:layout_marginTop="5dp"
-                android:text="Willingness to pay Toll"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-                
-                  
-                 <LinearLayout
-            android:id="@+id/ll_willpaytoll"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_willpaytoll"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal" >
-
-            <RadioGroup
-                android:id="@+id/rg_wptoll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_category"
-                android:checkedButton="@+id/rb_wtollyes"
-                android:orientation="horizontal"
-                android:weightSum="1" >
-
-                <RadioButton
-                    android:id="@+id/rb_wtollyes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/spn_vehtype"
-                    
-                    android:layout_toLeftOf="@+id/passenger"
-                    android:layout_weight="0.5"
-                    android:paddingLeft="5dp"
-                    android:text="YES"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_wtollno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                     
-                    android:layout_alignLeft="@+id/myRadioGroup"
-                    android:layout_toLeftOf="@+id/passenger"
-                    android:layout_weight="0.5"
-                    android:paddingLeft="5dp"
-                    android:text="NO"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-            </RadioGroup>
-        </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/spn_tripfrq"
                 android:layout_alignTop="@+id/spn_tripfrq"
-                android:layout_margin="10dp"
-                android:background="@color/sing_in_button"
-                android:gravity="center"
-                android:text="Save &amp; Continue"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/spn_tripfrq"
+                android:ems="10"
+                android:inputType="number"
                 android:textColor="@color/white" />
-        </LinearLayout>
 
-       <!--  <TextView
-            android:id="@+id/tv_dateview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/txt_category"
-            android:layout_alignLeft="@+id/et_times"
-            android:layout_marginLeft="10dp"
-            android:text="datevbb" /> -->
-        
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/txt_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/et_times"
+                android:layout_alignBottom="@+id/et_times"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/et_times"
+                android:text="Times:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-</ScrollView>
+            <TextView
+                android:id="@+id/txt_r_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/spn_tripfrq"
+                android:layout_below="@+id/spn_tripfrq"
+                android:layout_marginTop="5dp"
+                android:text="Return Trip same day:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_roundtrip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_r_trip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <RadioGroup
+                    android:id="@+id/rg_roundtrip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_category"
+                    android:checkedButton="@+id/rb_yes"
+                    android:orientation="horizontal"
+                    android:weightSum="1" >
+
+                    <RadioButton
+                        android:id="@+id/rb_yes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/spn_vehtype"
+                        android:layout_toLeftOf="@+id/passenger"
+                        android:layout_weight="0.5"
+                        android:text="\tYES"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/myRadioGroup"
+                        android:layout_toLeftOf="@+id/passenger"
+                        android:layout_weight="0.5"
+                        android:text="\tNO"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_roundtrip"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_commoditytype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/spn_tripfrq"
+                    android:layout_below="@+id/spn_tripfrq"
+                    android:layout_marginTop="5dp"
+                    android:text="Commodity Type"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spn_commodity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/txt_trip"
+                    android:layout_alignRight="@+id/et_destination"
+                    android:layout_below="@id/txt_trip"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/spn_tripfrq"
+                    android:layout_below="@+id/spn_tripfrq"
+                    android:layout_marginTop="5dp"
+                    android:text="Monthly pass"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_mpass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_r_trip"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioGroup
+                        android:id="@+id/rg_mpass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_category"
+                        android:checkedButton="@+id/rb_mpassyes"
+                        android:orientation="horizontal"
+                        android:weightSum="1" >
+
+                        <RadioButton
+                            android:id="@+id/rb_mpassyes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/spn_vehtype"
+                            android:layout_toLeftOf="@+id/passenger"
+                            android:layout_weight="0.5"
+                            android:paddingLeft="5dp"
+                            android:text="YES"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb_mpassno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myRadioGroup"
+                            android:layout_toLeftOf="@+id/passenger"
+                            android:layout_weight="0.5"
+                            android:paddingLeft="5dp"
+                            android:text="NO"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/weight_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spn_tripfrq"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1" >
+
+                    <TextView
+                        android:id="@+id/tv_wtons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.5"
+                        android:text="Weight in tons :"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_wtons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:hint="Enter weight"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" android:layout_gravity="left"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_willpaytoll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/weight_layout"
+                    android:layout_marginTop="5dp"
+                    android:text="Willingness to pay Toll"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_willpaytoll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_willpaytoll"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioGroup
+                        android:id="@+id/rg_wptoll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_category"
+                        android:checkedButton="@+id/rb_wtollyes"
+                        android:orientation="horizontal"
+                        android:weightSum="1" >
+
+                        <RadioButton
+                            android:id="@+id/rb_wtollyes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/spn_vehtype"
+                            android:layout_toLeftOf="@+id/passenger"
+                            android:layout_weight="0.5"
+                            android:paddingLeft="5dp"
+                            android:text="YES"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb_wtollno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myRadioGroup"
+                            android:layout_toLeftOf="@+id/passenger"
+                            android:layout_weight="0.5"
+                            android:paddingLeft="5dp"
+                            android:text="NO"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </RadioGroup>
+                </LinearLayout>
+                
+                
+                 <LinearLayout
+                    android:id="@+id/trip_laout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_willpaytoll"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp" android:weightSum="1"
+                    android:orientation="horizontal" >
+                    
+                      <TextView
+                        android:id="@+id/tv_lenght"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.5"
+                        android:text="Trip Length :"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_trip_lenght"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:hint="Enter length"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" android:layout_gravity="left"
+                        android:textStyle="bold" />
+                    </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/trip_laout"
+                    android:layout_alignTop="@+id/spn_tripfrq"
+                    android:layout_margin="10dp"
+                    android:background="@color/sing_in_button"
+                    android:gravity="center"
+                    android:text="Save &amp; Continue"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>

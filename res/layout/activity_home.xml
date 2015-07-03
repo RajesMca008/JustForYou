@@ -8,19 +8,37 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="survey.tgs.com.myapplication.HomeActivity" >
+    
+    
+   
+    
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"  android:background="@drawable/shadow_layer"
+        android:layout_margin="10dp" android:orientation="vertical"  android:layout_alignParentTop="true" >
+         <TextView
+        android:id="@+id/date_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+      
+        android:textColor="@color/black"
+         
+        android:text="No of Servey&apos;s :" />
 
     <TextView
         android:id="@+id/txt_noserveys"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+         android:layout_margin="5dp"
         android:layout_marginTop="30dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:gravity="center_vertical"
-        android:background="@drawable/shadow_layer"
+         
         android:textColor="@color/black"
-        android:padding="5dp"
+         
         android:text="No of Servey&apos;s :" />
+    </LinearLayout>
     
      <RelativeLayout
         android:layout_width="match_parent"

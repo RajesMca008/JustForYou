@@ -2,46 +2,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2" 
-   >
+    android:background="@drawable/background2" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center_vertical" android:background="@drawable/shadow_layer"
+        android:layout_centerVertical="true"
         android:layout_margin="10dp"
-        android:padding="10dp"
-       >
+        android:background="@drawable/shadow_layer"
+        android:gravity="center_vertical"
+        android:padding="10dp" >
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           
-            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:text="Login"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
-          android:textStyle="bold"
             android:textSize="24sp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/et_username"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_title"
             android:background="@drawable/textfiled"
             android:ems="10"
-            android:text="admin"
             android:hint="@string/uname"
-            android:textColor="@color/black"
-            android:layout_below="@id/tv_title"
-            android:paddingLeft="10dp" android:singleLine="true">
-         
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:text="Admin"
+            android:textColor="@color/black" >
         </EditText>
 
         <EditText
@@ -54,27 +51,23 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/textfiled"
             android:ems="10"
-               android:text="admin"
             android:hint="@string/pwd"
-            android:textColor="@color/black"
             android:inputType="textPassword"
-            android:paddingLeft="10dp" android:singleLine="true"/>
-
-        
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:text="Admin@123"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/et_pwd"
             android:layout_marginTop="30dp"
-            android:layout_alignParentRight="true"
             android:background="@color/sing_in_button"
-            android:textColor="@color/white"
-            android:text="@string/login" />
-
-        
-
+            android:text="@string/login"
+            android:textColor="@color/white" />
     </RelativeLayout>
 
 </RelativeLayout>

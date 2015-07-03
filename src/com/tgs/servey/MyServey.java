@@ -28,10 +28,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -40,6 +40,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -52,7 +53,7 @@ import com.tgs.adapter.DatabaseHandler;
 import com.tgs.bean.SpinnerModel;
 import com.tgs.servey.db.PlacesDatabaseHandler;
 
-public class MyServey extends ActionBarActivity {
+public class MyServey extends BaserActinbBar {
 	String[] goodsTypeArray ;
 	String[] passengerTypeArray ;
 
@@ -267,6 +268,8 @@ public class MyServey extends ActionBarActivity {
 	};
 
 	Geocoder geocoder;
+	private EditText trip_length=null;
+	private LinearLayout trip_layout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -275,7 +278,7 @@ public class MyServey extends ActionBarActivity {
 
 		
 		
-		//setupActionBar();
+		 //setupActionBar();
 		
 		db_Handler=new DatabaseHandler(getApplicationContext());
 
@@ -303,11 +306,14 @@ public class MyServey extends ActionBarActivity {
 		passengervehTypeArray = getResources().getStringArray(R.array.passengerVehArr);
 		rg_vehtype=(RadioGroup)findViewById(R.id.myRadioGroup);
 		tv_date=(TextView)findViewById(R.id.tv_dateview);
+		trip_length=(EditText)findViewById(R.id.et_trip_lenght);
+		
+		trip_layout=(LinearLayout)findViewById(R.id.trip_laout);
 
 		Date dNow = new Date( );
 		SimpleDateFormat ft = 
 				new SimpleDateFormat ("dd-MM-yyyy hh:mm");
-		Animation animBlink;
+		 
 		// System.out.println("Current Date: " + ft.format(dNow));
 		//tv_date.setText(ft.format(dNow));
 		//batinfo.setText(ft.format(dNow));
@@ -427,7 +433,7 @@ public class MyServey extends ActionBarActivity {
 				if(rb_sel_goods.getText().toString().equalsIgnoreCase("\tGoods")){
 					if(vehregno.length()!=0 && et_origin.getText().toString().length()!=0 && et_destination.getText().toString().length()!=0
 							&& veh_comd.length()!=0 && et_times.length()!=0 && veh_frq.length()!=0 
-							&& et_tons.getText().toString().length()!=0){
+							&& et_tons.getText().toString().length()!=0 &&trip_length.getText().toString().length()!=0){
 
 						ContentValues cv_values=new ContentValues();
 						cv_values.put(DatabaseHandler.VEH_REG_NO,vehregno);
@@ -437,11 +443,12 @@ public class MyServey extends ActionBarActivity {
 						cv_values.put(DatabaseHandler.OCCUPANCY,"-NA-");
 						cv_values.put(DatabaseHandler.TRIP_TIME,et_times.getText().toString());
 						cv_values.put(DatabaseHandler.TRIP_FREQ,veh_frq);
+						cv_values.put(DatabaseHandler.TRIP_LENGTH,trip_length.getText().toString());
 						cv_values.put(DatabaseHandler.RETURN_TRIP,rb_sel_roundtrip.getText().toString());
 						cv_values.put(DatabaseHandler.MONTHLY_PASS,rb_sel_monthlypass.getText().toString());
 						cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,et_tons.getText().toString());
 						cv_values.put(DatabaseHandler.PAY_TOLL,rb_sel_paytoll.getText().toString());
-						cv_values.put(DatabaseHandler.LATITUDE_LONGITUDE,latitude+":"+longitude);
+						cv_values.put(DatabaseHandler.LATITUDE_LONGITUDE,"http://maps.google.com/?q="+latitude+","+longitude); 
 						//cv_values.put(DatabaseHandler.LONGITUDE,longitude);
 						cv_values.put(DatabaseHandler.IMAGEPATH,photoPath);
 						cv_values.put(DatabaseHandler.CREATED_DATE,toDay_DATE);
@@ -474,8 +481,9 @@ public class MyServey extends ActionBarActivity {
 						cv_values.put(DatabaseHandler.MONTHLY_PASS,rb_sel_monthlypass.getText().toString());
 						cv_values.put(DatabaseHandler.WEIGHT_IN_TONS,"-NA-");
 						cv_values.put(DatabaseHandler.PAY_TOLL,rb_sel_paytoll.getText().toString());
-						cv_values.put(DatabaseHandler.LATITUDE_LONGITUDE,latitude+","+longitude);
+						cv_values.put(DatabaseHandler.LATITUDE_LONGITUDE,"http://maps.google.com/?q="+latitude+","+longitude);
 						//   cv_values.put(DatabaseHandler.LONGITUDE,longitude);
+						cv_values.put(DatabaseHandler.TRIP_LENGTH,"-NA-");
 						cv_values.put(DatabaseHandler.IMAGEPATH,mCurrentPhotoPath);
 						cv_values.put(DatabaseHandler.CREATED_DATE,toDay_DATE);
 						db_Handler.insert(DatabaseHandler.TABLE_servey_Data, cv_values);
@@ -497,9 +505,9 @@ public class MyServey extends ActionBarActivity {
 
 
 
-		 final ActionBar actionBar = getSupportActionBar();
+		 /*final ActionBar actionBar = getSupportActionBar();
 		actionBar.setTitle(getString(R.string.app_name)+"\t"+ft.format(dNow));
-		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.iconbg)); 
+		 actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.iconbg)); */
 		
 	
 
@@ -589,7 +597,7 @@ public class MyServey extends ActionBarActivity {
 	}
 	
 	
-/*	private void setupActionBar() {
+ /*	private void setupActionBar() {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
@@ -599,15 +607,13 @@ public class MyServey extends ActionBarActivity {
         View v = inflator.inflate(R.layout.action_bar_title, null);
 
        // TextView titleTV = (TextView) v.findViewById(R.id.title);
-        Typeface font = Typeface.createFromAsset(getAssets(),
-                "fonts/your_custom_font.ttf");
-        titleTV.setTypeface(font);
+        
         //batinfo=(TextView) v.findViewById(R.id.batt_info);
         ab.setCustomView(v);
        // ab.seth
 
           //  ab.setHomeAsUpEnabled(true);
-    }*/
+    } */
 
 	public static boolean isIntentAvailable(Context context, String action) {
 		final PackageManager packageManager = context.getPackageManager();
@@ -649,6 +655,7 @@ public class MyServey extends ActionBarActivity {
 		spn_commodity.setAdapter(adapter_commodity);
 		tv_wtons.setVisibility(View.VISIBLE);
 		et_tons.setVisibility(View.VISIBLE);
+		trip_layout.setVisibility(View.VISIBLE);
 
 		txt_occupancy.setVisibility(View.GONE);
 		et_occupancy.setVisibility(View.GONE);
@@ -672,6 +679,7 @@ public class MyServey extends ActionBarActivity {
 		ArrayAdapter<String> adapter_commodity = new ArrayAdapter<String>(this,  android.R.layout.simple_dropdown_item_1line, passenger_commodity);
 		tv_wtons.setVisibility(View.GONE);
 		et_tons.setVisibility(View.GONE);
+		trip_layout.setVisibility(View.GONE);
 		spn_commodity.setAdapter(adapter_commodity);
 		tv_commoditytype.setText("Purpose");
 
@@ -714,12 +722,11 @@ public class MyServey extends ActionBarActivity {
 			//batinfo.setText("");
 			int level=i.getIntExtra("level", 0);
 
-			Date dNow = new Date( );
+			//Date dNow = new Date( );
 			/*SimpleDateFormat ft = 
 					new SimpleDateFormat ("dd-MM-yyyy hh:mm");*/
-			Animation animBlink;
-			tv_date.setText( "Battery remaining -"+Integer.toString(level)+"%");
-			//batinfo.setText(ft.format(dNow)+"-"+Integer.toString(level)+"%");
+			tv_date.setText( "Battery remaining:"+Integer.toString(level)+"%");
+			 
 		}
 	};
 
@@ -731,7 +738,8 @@ public class MyServey extends ActionBarActivity {
 				MyServey.this);
 
 		// set title
-		alertDialogBuilder.setTitle("Message");
+		alertDialogBuilder.setTitle(getString(R.string.app_name));
+		alertDialogBuilder.setIcon(R.drawable.ic_launcher);
 
 		// set dialog message
 		alertDialogBuilder

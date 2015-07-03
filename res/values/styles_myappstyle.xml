@@ -42,7 +42,8 @@
     </style>
 
     <style name="ActionBar.Transparent.Myappstyle" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@drawable/ab_transparent_myappstyle</item>
+     <!--    <item name="background">@drawable/ab_transparent_myappstyle</item> -->
+      <item name="android:background">@color/sing_in_button</item>
         <item name="progressBarStyle">@style/ProgressBar.Myappstyle</item>
     </style>
 	

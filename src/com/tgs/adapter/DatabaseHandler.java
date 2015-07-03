@@ -10,7 +10,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 
 	// Database Name
 	public static final String DATABASE_NAME = "Servey";
@@ -32,8 +32,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public static final String MONTHLY_PASS="Vehicle_MONTHLY_PASS";
 	public static final String WEIGHT_IN_TONS="WEIGHT_TONS";
 	public static final String PAY_TOLL="PAY_TOLL";
-	public static final String LATITUDE_LONGITUDE="LATITUDE_LONGITUDE";
-	public static final String LONGITUDE="LONGITUDE";
+	public static final String LATITUDE_LONGITUDE="GOOGLE_MAP";
+	//public static final String LONGITUDE="LONGITUDE";
 	public static final String IMAGEPATH="IMAGEPATH";
 	public static final String CREATED_DATE="CREATED_DATE";
 	
